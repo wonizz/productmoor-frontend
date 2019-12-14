@@ -10,10 +10,12 @@
 ## Table of Contents
 1. [Running the Project](#running-the-project)
 2. [Project Structure](#project-structure)
-3. [Live Development](#local-development)
+3. [Data Modeling](#home/detail data model)
+4. [Live Development](#local-development)
     * [Hot Reloading](#hot-reloading)
     * [Redux DevTools](#redux-devtools)
-4. [Routing](#routing)
+5. [Routing](#routing)
+
 
 ## Running the Project
 
@@ -38,6 +40,71 @@ $ yarn start  # Start the development server (or `npm start`)
 │   └── agent.js             # 외부 API 연계 호출 (데이터)
 │   └── index.js             # 페이지 Router 정의 
 ```
+
+## Data Modeling
+
+마크업에 따라 변경이 되겠지만 home과 detail page에 대한 데이터 모델링이 필요하여 다음과 같이 구성하고 페이지에 출력했음. 
+[Home] 
+<pre><code>
+{ 
+   articles:[ 
+      { 
+         img:"https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-productions-156392658587651995.jpg/640/640",
+         title:"title_title",
+         description:"test1",
+         url:"charming",
+         slug:1
+      },
+      { 
+         img:"https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-productions-157526343486057882.jpg/640/640",
+         title:"title_title",
+         description:"test1",
+         url:"charming",
+         slug:2
+      }
+   ]
+}
+</code></pre>
+
+[Detail Page]
+<pre><code>
+{ 
+   article:{ 
+      content1:`Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+      anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+      laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+      dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+      consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+      ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+      labore et dolore magnam aliquam quaerat voluptatem.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+      anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+      laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+      dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+      consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+      ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+      labore et dolore magnam aliquam quaerat voluptatem.`,
+      content2:`Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+      anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+      laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+      dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+      consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+      ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+      labore et dolore magnam aliquam quaerat voluptatem.`,
+      img1:"http://demo.themefisher.com/parsa/images/post-single.jpg",
+      img2:"http://demo.themefisher.com/parsa/images/post-img.jpg"
+   }
+}
+</code></pre>
 
 ## Live Development
 
