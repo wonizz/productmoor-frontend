@@ -34,12 +34,12 @@ const ArticlePreview = props => {
   };
 
   return (
-        <div class="col-lg-4 col-sm-6 mb-5">
-            <article class="text-center">
-            <img class="img-fluid mb-4" src={article.img} alt="post-thumb"></img>
-            <p class="text-uppercase mb-2">{article.title}</p>
-            <h4 class="title-border">
-              <a class="text-dark" href="blog-single.html">Charming Evening Field</a>
+        <div className="col-lg-4 col-sm-6 mb-5">
+            <article className="text-center">
+            <img className="img-fluid mb-4" src={article.img} alt="post-thumb"></img>
+            <p className="text-uppercase mb-2">{article.title}</p>
+            <h4 className="title-border">
+              <a className="text-dark" href="blog-single.html">Charming Evening Field</a>
             </h4>
             <p>{article.description}</p>
 

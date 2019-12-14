@@ -27,31 +27,55 @@ const ListPagination = props => {
   };
 
   return (
-    <nav>
-      <ul className="pagination">
+    // <nav>
+    //   <ul className="pagination">
 
-        {
-          range.map(v => {
-            const isCurrent = v === props.currentPage;
-            const onClick = ev => {
-              ev.preventDefault();
-              setPage(v);
-            };
-            return (
-              <li
-                className={ isCurrent ? 'page-item active' : 'page-item' }
-                onClick={onClick}
-                key={v.toString()}>
+    //     {
+    //       range.map(v => {
+    //         const isCurrent = v === props.currentPage;
+    //         const onClick = ev => {
+    //           ev.preventDefault();
+    //           setPage(v);
+    //         };
+    //         return (
+    //           <li
+    //             className={ isCurrent ? 'page-item active' : 'page-item' }
+    //             onClick={onClick}
+    //             key={v.toString()}>
 
-                <a className="page-link" href="">{v + 1}</a>
+    //             <a className="page-link" href="">{v + 1}</a>
 
+    //           </li>
+    //         );
+    //       })
+    //     }
+
+    //   </ul>
+    // </nav>
+
+        <div className="row">
+        <div className="col-12">
+          <nav>
+            <ul className="pagination justify-content-center align-items-center">
+              <li className="page-item">
+                <span className="page-link">&laquo; Previous</span>
               </li>
-            );
-          })
-        }
+              <li className="page-item"><a className="page-link" href="#">01</a></li>
+              <li className="page-item active">
+                <span className="page-link">02</span>
+              </li>
+              <li className="page-item"><a className="page-link" href="#">03</a></li>
+              <li className="page-item"><a className="page-link" href="#">04</a></li>
+              <li className="page-item"><a className="page-link" href="#">05</a></li>
+              <li className="page-item"><a className="page-link" href="#">06</a></li>
+              <li className="page-item">
+                <a className="page-link" href="#">Next &raquo;</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
 
-      </ul>
-    </nav>
   );
 };
 
