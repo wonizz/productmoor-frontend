@@ -4,29 +4,29 @@ import { Link } from 'react-router';
 const LoggedOutView = props => {
   if (!props.currentUser) {
     return (
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html"><img class="img-fluid" src="http://demo.themefisher.com/parsa/images/logo.png" alt="parsa"></img></a>
-            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
+        <nav className="navbar navbar-expand-lg navbar-light">
+            <a className="navbar-brand" href="index.html"><img className="img-fluid" src="http://demo.themefisher.com/parsa/images/logo.png" alt="parsa"></img></a>
+            <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
               aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse text-center" id="navogation">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown"
+            <div className="collapse navbar-collapse text-center" id="navogation">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item dropdown">
+                  <a className="nav-link text-uppercase text-dark dropdown-toggle" href="#" id="navbarDropdown"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Home
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="index.html">Homepage 1</a>
-                    <a class="dropdown-item" href="homepage-2.html">Homepage 2</a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="index.html">Homepage 1</a>
+                    <a className="dropdown-item" href="homepage-2.html">Homepage 2</a>
                   </div>
                 </li>
               </ul>
-              <form class="form-inline position-relative ml-lg-4">
-                <input class="form-control px-0 w-100" type="search" placeholder="Search"></input>
-                <button class="search-icon" type="submit"><i class="ti-search text-dark"></i></button>
+              <form className="form-inline position-relative ml-lg-4">
+                <input className="form-control px-0 w-100" type="search" placeholder="Search"></input>
+                <button className="search-icon" type="submit"><i className="ti-search text-dark"></i></button>
               </form>
             </div>
         </nav>
@@ -77,7 +77,7 @@ const LoggedInView = props => {
 class Header extends React.Component {
   render() {
     return (
-      <header class="navigation">
+      <header className="navigation">
 
 
           {/* <Link to="/" className="navbar-brand">
