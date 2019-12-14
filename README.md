@@ -10,10 +10,12 @@
 ## Table of Contents
 1. [Running the Project](#running-the-project)
 2. [Project Structure](#project-structure)
-3. [Live Development](#local-development)
+3. [Data Modeling](#data-modeling)
+4. [Live Development](#local-development)
     * [Hot Reloading](#hot-reloading)
     * [Redux DevTools](#redux-devtools)
-4. [Routing](#routing)
+5. [Routing](#routing)
+
 
 ## Running the Project
 
@@ -38,6 +40,43 @@ $ yarn start  # Start the development server (or `npm start`)
 │   └── agent.js             # 외부 API 연계 호출 (데이터)
 │   └── index.js             # 페이지 Router 정의 
 ```
+
+## Data Modeling
+
+마크업에 따라 변경이 되겠지만 home과 detail page에 대한 데이터 모델링이 필요하여 다음과 같이 구성하고 페이지에 출력했음. 
+[Home] 
+<pre><code>
+{ 
+   articles:[ 
+      { 
+         img:"/uploads-productions-156392658587651995.jpg/640/640",
+         title:"title_title",
+         description:"test1",
+         url:"charming",
+         slug:1
+      },
+      { 
+         img:"/uploads-productions-157526343486057882.jpg/640/640",
+         title:"title_title",
+         description:"test1",
+         url:"charming",
+         slug:2
+      }
+   ]
+}
+</code></pre>
+
+[Detail Page]
+<pre><code>
+{ 
+   article:{ 
+      content1:"Lorem ipsum dolor sit amet",
+      content2:"Lorem ipsum dolor sit amet",
+      img1:"http://demo.themefisher.com/parsa/images/post-single.jpg",
+      img2:"http://demo.themefisher.com/parsa/images/post-img.jpg"
+   }
+}
+</code></pre>
 
 ## Live Development
 
