@@ -54,7 +54,7 @@ class Article extends React.Component {
       dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
       consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
       ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-      labore et dolore magnam aliquam quaerat voluptatem.`, img1 : "http://demo.themefisher.com/parsa/images/post-single.jpg", img2 : "http://demo.themefisher.com/parsa/images/post-img.jpg"}}
+      labore et dolore magnam aliquam quaerat voluptatem.`, img1 : "https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-productions-images-157526343951777345.jpg/640/640", img2 : "https://image.ohou.se/image/central_crop/bucketplace-v2-development/uploads-productions-images-157526344158315961.jpg/640/640"}}
     //   agent.Comments.forArticle(this.props.params.id)
      ]));
   }
