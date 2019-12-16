@@ -5,7 +5,7 @@ const LoggedOutView = props => {
   if (!props.currentUser) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
-            <a className="navbar-brand" href="index.html"><img className="img-fluid" src="http://demo.themefisher.com/parsa/images/logo.png" alt="parsa"></img></a>
+            <a className="navbar-brand" href="index.html"><img className="img-fluid" src="logo.png" alt="parsa"></img></a>
             <button className="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navogation"
               aria-controls="navogation" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>

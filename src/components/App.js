@@ -1,5 +1,6 @@
 import agent from '../agent';
 import Header from './Header';
+import Footer from './Footer';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -40,18 +41,40 @@ class App extends React.Component {
     if (this.props.appLoaded) {
       return (
         <div>
+        <div className="preloader">
+          <div className="loader">
+            <span className="dot"></span>
+            <div className="dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
           <Header
             appName={this.props.appName}
             currentUser={this.props.currentUser} />
           {this.props.children}
+          <Footer />
         </div>
       );
     }
     return (
       <div>
+        <div className="preloader">
+          <div className="loader">
+            <span className="dot"></span>
+            <div className="dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
         <Header
           appName={this.props.appName}
           currentUser={this.props.currentUser} />
+        <Footer />
       </div>
     );
   }

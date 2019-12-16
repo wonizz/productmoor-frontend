@@ -31,11 +31,11 @@ const ArticleList = props => {
             }
           </div>
         </div>
-      </section>
-      <ListPagination
+        <ListPagination
         pager={props.pager}
         articlesCount={props.articlesCount}
         currentPage={props.currentPage} />
+      </section>
     </div>
   );
 };
