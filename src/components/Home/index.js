@@ -9,6 +9,7 @@ import {
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER
 } from '../../constants/actionTypes';
+import Footer from '../Footer';
 
 const mapStateToProps = state => ({
   ...state.home,
@@ -44,16 +45,18 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home-page">
+      <div className="container">
+            <div className="inner"></div>
+              <div className="head-cont">
+                <Banner token={this.props.token} appName={this.props.appName} />
+              </div>
+            
+              <div className="body-cont">
+                
+                  <MainView />
 
-        <Banner token={this.props.token} appName={this.props.appName} />
-
-        <div className="container page">
-          <div className="row">
-            <MainView />
-
-            {/* <div className="col-md-3">
-              <div className="sidebar">
+            {/* <div classNameName="col-md-3">
+              <div classNameName="sidebar">
 
                 <p>Popular Tags</p>
 
@@ -63,10 +66,8 @@ class Home extends React.Component {
 
               </div>
             </div> */}
-          </div>
-        </div>
-
-      </div>
+                </div>
+            </div>
     );
   }
 }

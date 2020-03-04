@@ -5,41 +5,26 @@ import React from 'react';
 class Footer extends React.Component {
   render() {
     return (
-        <footer>
-        <div className="section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-3 col-sm-6 mb-4 mb-md-0">
-                <a href="index.html"><img src="logo.png" alt="persa" className="img-fluid"></img></a>
+          <footer className="footer">
+          <div className="inner">
+              <div className="head-footer">
+                  <h2 className="stit-footer">PRODUCTMOOR</h2>
+                  <nav className="nav-footer">
+                      <a href="#">TERMS OF USE</a>
+                      <a href="#">PRIVACY POLICY</a>
+                  </nav>
               </div>
-              <div className="col-md-3 col-sm-6 mb-4 mb-md-0">
-                <ul className="list-unstyled">
-                  <li className="font-secondary text-dark">Sydney</li>
-                  <li className="font-secondary text-dark">6 rip carl Avenue CA 90733</li>
-                </ul>
+              <div className="cont-footer">
+                  <p className="txt-footer"><span>상호 : 라테라</span><span>대표 : 이윤영</span><span>사업자등록번호 : 603-81-18194 </span></p>
+                  <p className="txt-footer">주소 : 서울특별시 서초구 명달로 22길 33-4	</p>
+                  <p className="txt-footer">Productmoor는 통신판매중개자이며, 통신판매의 당사자가 아닙니다. 상품, 상품정보, 거래에 관한 의무와 책임은 판매자에게 있습니다.  </p>
+                  <a href="#" className="btn-foot-sns"></a>
               </div>
-              <div className="col-md-3 col-sm-6 mb-4 mb-md-0">
-                <ul className="list-unstyled">
-                  <li className="font-secondary text-dark">Tel: +90 000 333 22</li>
-                  <li className="font-secondary text-dark">Mail: exmaple@ymail.com</li>
-                </ul>
+              <div className="foot-footer">
+                  <a href="mailto:Productmoor@productmoor.com">Productmoor@productmoor.com</a>
+                  <cite>Copyright © 2020 productmoor. All rights reserved </cite>
               </div>
-              <div className="col-md-3 col-sm-6 mb-4 mb-md-0">
-                <span className="font-secondary text-dark mr-3">Follow</span>
-                <ul className="list-inline d-inline-block">
-                  <li className="list-inline-item"><a href="#" className="text-dark"><i className="ti-facebook"></i></a></li>
-                  <li className="list-inline-item"><a href="#" className="text-dark"><i className="ti-twitter-alt"></i></a></li>
-                  <li className="list-inline-item"><a href="#" className="text-dark"><i className="ti-linkedin"></i></a></li>
-                  <li className="list-inline-item"><a href="#" className="text-dark"><i className="ti-github"></i></a></li>
-                </ul>
-              </div>
-            </div>
           </div>
-        </div>
-        <div className="text-center">
-          <p>Copyright ©<script>var CurrentYear = new Date().getFullYear()
-          document.write(CurrentYear)</script> a theme by productmoor</p>
-        </div>
       </footer>
     );
   }

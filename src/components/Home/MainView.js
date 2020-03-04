@@ -12,9 +12,9 @@ const YourFeedTab = props => {
     }
 
     return (
-      <li className="nav-item">
+      <li classNameName="nav-item">
         <a  href="#"
-            className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
+            classNameName={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
             onClick={clickHandler}>
           Your Feed
         </a>
@@ -30,10 +30,10 @@ const GlobalFeedTab = props => {
     props.onTabClick('all', agent.Articles.all, agent.Articles.all());
   };
   return (
-    <li className="nav-item">
+    <li classNameName="nav-item">
       <a
         href=""
-        className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
+        classNameName={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
         onClick={clickHandler}>
         Global Feed
       </a>
@@ -47,9 +47,9 @@ const TagFilterTab = props => {
   }
 
   return (
-    <li className="nav-item">
-      <a href="" className="nav-link active">
-        <i className="ion-pound"></i> {props.tag}
+    <li classNameName="nav-item">
+      <a href="" classNameName="nav-link active">
+        <i classNameName="ion-pound"></i> {props.tag}
       </a>
     </li>
   );
@@ -67,29 +67,323 @@ const mapDispatchToProps = dispatch => ({
 
 const MainView = props => {
   return (
-    <div className="col-md-9">
-      <div className="feed-toggle">
-        <ul className="nav nav-pills outline-active">
-
-          {/* <YourFeedTab
-            token={props.token}
-            tab={props.tab}
-            onTabClick={props.onTabClick} /> */}
-
-          {/* <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} /> */}
-
-          {/* <TagFilterTab tag={props.tag} /> */}
-
-        </ul>
+    <div className="cont-list">
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/sofa-1078931_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-modern-tv-4813589_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <div className="img-cell tag-cell">
+                            <a href="#" className="cell-tag">Accessories</a>
+                            <a href="#" className="cell-tag">Accessories</a>
+                            <a href="#" className="cell-tag">Accessories</a>
+                        </div>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-2155376_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/home-820389_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/brick-wall-1834784_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/sofa-1078931_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-modern-tv-4813589_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-2155376_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/home-820389_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/chair-1484853_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/brick-wall-1834784_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/sofa-1078931_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-modern-tv-4813589_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-2155376_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/home-820389_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/chair-1484853_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/brick-wall-1834784_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/sofa-1078931_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-modern-tv-4813589_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-2155376_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/home-820389_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/chair-1484853_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/brick-wall-1834784_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/sofa-1078931_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-modern-tv-4813589_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/living-room-2155376_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/home-820389_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/chair-1484853_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/kitchen-4043098_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
+                        
+                        
+                        <a href="#" className="img-cell">
+                            <figure>
+                                <img src="../images/brick-wall-1834784_1920.jpg" alt=""/>
+                                <figcaption></figcaption>
+                            </figure>
+                        </a>
       </div>
-
-      <ArticleList
-        pager={props.pager}
-        articles={props.articles}
-        loading={props.loading}
-        articlesCount={props.articlesCount}
-        currentPage={props.currentPage} />
-    </div>
   );
 };
 
