@@ -1,8 +1,14 @@
 $(function(){
-    masonry();
+    //masonry();
     slickDetail();
     slickFilter();
 })
+
+$(window).load(function() {
+    console.log("console> window.onloade() 첫번째");
+    //masonry();
+});
+
 
 // masonry
 function masonry() {

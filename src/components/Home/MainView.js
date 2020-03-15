@@ -3,6 +3,7 @@ import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
+import Masonry from 'react-masonry-component';
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -73,10 +74,16 @@ const MainView = props => {
       }
   return (
     <div className="cont-list">
+    <Masonry
+                className={'my-gallery-class'} // default ''
+                elementType={'ul'} // default 'div'
+                disableImagesLoaded={false} // default false
+                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+            >
                         {
-                        props.articles.map(article =>{
+                        props.articles.map((article, index) =>{
                             return (
-                                <a href="#" className="img-cell">
+                                <a href="#" className="img-cell" key={index}>
                                 <figure>
                                     <img src={article._source.crawling_image} alt=""/>
                                     <figcaption></figcaption>
@@ -85,7 +92,7 @@ const MainView = props => {
                             );
                         })
                         }
-                    
+            </Masonry>
       </div>
   );
 };
