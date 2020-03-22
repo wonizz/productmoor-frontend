@@ -51,11 +51,13 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <div className="wrap">
           <Header
             appName={this.props.appName}
             currentUser={this.props.currentUser} />
           {this.props.children}
           <Footer />
+        </div>
         </div>
       );
     }
@@ -71,11 +73,14 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <div className="wrap">
         <Header
           appName={this.props.appName}
           currentUser={this.props.currentUser} />
         <Footer />
+        </div>
       </div>
+      
     );
   }
 }

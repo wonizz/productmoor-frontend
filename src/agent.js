@@ -47,11 +47,11 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/onlineshop-2020-03-04/_search?pretty`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTag: (tag, page) =>
-    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
+  byTitle: (id, page) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id}`),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>

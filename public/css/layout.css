@@ -837,7 +837,7 @@ ol {
 
 /* footer */
 .footer {
-    /* position: absolute; */
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1412,7 +1412,7 @@ ol {
         width: 100vw;
     }
     .cont-detail {
-        position: fixed;
+        /* position: fixed; */
         left: 100%;
         top: 12.077vw;
         margin: 0;
