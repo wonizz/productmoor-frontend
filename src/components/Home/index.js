@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  onClickTag: (tag, pager, payload) =>
+  onClickDetail: (tag, pager, payload) =>
     dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
@@ -66,8 +66,10 @@ class Home extends React.Component {
             
               <div className="body-cont">
                   
-                  <MainView />
-
+                  <MainView
+                  onClickDetail={this.props.onClickDetail}
+                  />
+                  <Tags />
                     {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
 
@@ -79,6 +81,7 @@ class Home extends React.Component {
 
                       </div>
                     </div> */}
+                    
               </div>
             </div>
       </div>

@@ -40,10 +40,10 @@ export default (state = {}, action) => {
       return {
         ...state,
         pager: action.pager,
-        articles: action.payload.articles,
-        articlesCount: action.payload.articlesCount,
+        articles: action.payload.hits.hits[0]._source,
+        //articlesCount: action.payload.articlesCount,
         tab: null,
-        tag: action.tag,
+        //tag: action.tag,
         currentPage: 0
       };
     case HOME_PAGE_LOADED:

@@ -4,6 +4,7 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import Masonry from 'react-masonry-component';
+import { Link } from 'react-router';
 
 const YourFeedTab = props => {
   if (props.token) {
@@ -73,27 +74,31 @@ const MainView = props => {
         );
       }
   return (
-    <div className="cont-list">
+    
     <Masonry
-                className={'my-gallery-class'} // default ''
-                elementType={'ul'} // default 'div'
+                className={'cont-list'} // default ''
+                elementType={'div'} // default 'div'
                 disableImagesLoaded={false} // default false
                 updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
             >
                         {
                         props.articles.map((article, index) =>{
+                            const handleClick = ev => {
+                              ev.preventDefault();
+                              props.onClickDetail(article._source.product_title, page => agent.Articles.byTitle(article._source.product_title, page), agent.Articles.byTitle(article._source.product_title));
+                            };
                             return (
-                                <a href="#" className="img-cell" key={index}>
+                                <Link to={`detail/${article._source.product_title}`} className="img-cell">
                                 <figure>
-                                    <img src={article._source.crawling_image} alt=""/>
+                                    <img src={article._source.image_crawling} alt=""/>
                                     <figcaption></figcaption>
                                 </figure>
-                            </a>
+                                </Link>
                             );
                         })
                         }
             </Masonry>
-      </div>
+      
   );
 };
 
