@@ -1,22 +1,33 @@
 import React from 'react';
+import agent from '../../agent';
 
-const Banner = ({ appName, token }) => {
-  if (token) {
+const Banner = ({category, appName, onClickCategory }) => {
+  
+  if (!category) {
     return null;
   }
   return (
     <div className="menu-swiper swiper-container">
-        <nav className="menu-moor swiper=wrapper">
-            <a href="#" className="btn-nav swiper-slide active">Furniture</a>
-            <a href="#" className="btn-nav swiper-slide">Chairs</a>
-            <a href="#" className="btn-nav swiper-slide">Stools</a>
-            <a href="#" className="btn-nav swiper-slide">Tables</a>
-            <a href="#" className="btn-nav swiper-slide">Sofas</a>
-            <a href="#" className="btn-nav swiper-slide">Lighting</a>
-            <a href="#" className="btn-nav swiper-slide">Accessories</a>
-        </nav>
-        <div className="swiper-button-prev"></div>
-        <div className="swiper-button-next"></div>
+    <nav className="menu-moor swiper=wrapper">
+    {
+        category.category.map(category => {
+        const handleClick = ev => {
+          ev.preventDefault();
+          onClickCategory('','',agent.Articles.byCategory(category));
+        }; 
+        return (
+            <a 
+               href="#" 
+               className="btn-nav swiper-slide"
+               onClick={handleClick}
+            >{category}
+            </a>
+        )
+      })
+    }
+    </nav>
+    <div className="swiper-button-prev"></div>
+    <div className="swiper-button-next"></div>
     </div>
   );
 };

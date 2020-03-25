@@ -58,7 +58,7 @@ const TagFilterTab = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.articleList,
+  ...state.articleList,  
   tags: state.home.tags,
   token: state.common.token
 });
@@ -85,10 +85,10 @@ const MainView = props => {
                         props.articles.map((article, index) =>{
                             const handleClick = ev => {
                               ev.preventDefault();
-                              props.onClickDetail(article._source.product_title, page => agent.Articles.byTitle(article._source.product_title, page), agent.Articles.byTitle(article._source.product_title));
-                            };
+                              props.onClickDetail(agent.Articles.byTitle(article._source.product_title));
+                            };  
                             return (
-                                <Link to={`detail/${article._source.product_title}`} className="img-cell">
+                                <Link to={'#'} className="img-cell" onClick={handleClick}>
                                 <figure>
                                     <img src={article._source.image_crawling} alt=""/>
                                     <figcaption></figcaption>

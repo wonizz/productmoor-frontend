@@ -20,7 +20,8 @@ import {
 const defaultState = {
   appName: 'Product Moor',
   token: null,
-  viewChangeCounter: 0
+  viewChangeCounter: 0,
+  category: {"category":["Furniture","Chairs","Stools","Tables","Sofas","Lighting","Accessories"]},
 };
 
 export default (state = defaultState, action) => {

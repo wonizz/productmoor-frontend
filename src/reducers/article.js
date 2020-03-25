@@ -10,7 +10,7 @@ export default (state = {}, action) => {
     case ARTICLE_PAGE_LOADED:
       return {
         ...state,
-        article: action.payload[0].hits.hits[0]._source,
+        detail: action.payload.hits.hits[0]._source,
         //comments: action.payload[1].comments
       };
     case ARTICLE_PAGE_UNLOADED:
