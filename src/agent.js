@@ -52,6 +52,8 @@ const Articles = {
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id}`),
+  byCategory: (id, page) =>
+  requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category_addtional:${id}`),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>

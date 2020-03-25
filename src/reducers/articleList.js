@@ -50,8 +50,8 @@ export default (state = {}, action) => {
       return {
         ...state,
         pager: action.pager,
-        //tags: action.payload[0].tags,
-        articles: action.payload[1].hits.hits,
+        detail: '',
+        articles: action.payload[0] ? action.payload[0].hits.hits : action.payload.hits.hits,        
         //articlesCount: action.payload[1].articlesCount,
         currentPage: 0,
         tab: action.tab

@@ -9,6 +9,7 @@ import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
 const mapStateToProps = state => ({
   appLoaded: state.common.appLoaded,
   appName: state.common.appName,
+  category: state.common.category,
   currentUser: state.common.currentUser,
   redirectTo: state.common.redirectTo
 });

@@ -9,21 +9,23 @@ import Masonry from 'react-masonry-component';
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER
+  APPLY_TAG_FILTER,
+  ARTICLE_PAGE_LOADED
 } from '../../constants/actionTypes';
 import Footer from '../Footer';
 
 const mapStateToProps = state => ({
-  ...state.home,
+  ...state.article,
   appName: state.common.appName,
-  token: state.common.token
+  token: state.common.token,
+  category: state.common.category
 });
 
 
 
 const mapDispatchToProps = dispatch => ({
-  onClickDetail: (tag, pager, payload) =>
-    dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
+  onDetailLoad: (payload) =>
+    dispatch({ type: ARTICLE_PAGE_LOADED, payload}),
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () =>
@@ -39,7 +41,7 @@ class Home extends React.Component {
     const articlesPromise = this.props.token ?
       agent.Articles.feed :
       agent.Articles.all;
-    this.props.onLoad(tab, articlesPromise, Promise.all([agent.Tags.getAll(), articlesPromise()]));    
+    this.props.onLoad(tab, articlesPromise, Promise.all([articlesPromise()]));    
   }
 
   componentWillUnmount() {
@@ -61,15 +63,15 @@ class Home extends React.Component {
       <div className="container">
             <div className="inner">
               <div className="head-cont">
-                <Banner token={this.props.token} appName={this.props.appName} />
+                <Banner onClickCategory={this.props.onLoad} category={this.props.category} appName={this.props.appName} />
               </div>
             
-              <div className="body-cont">
+              <div className={"body-cont " + (this.props.detail ? 'show-detail' : '')}>
                   
                   <MainView
-                  onClickDetail={this.props.onClickDetail}
+                  onClickDetail={this.props.onDetailLoad}
                   />
-                  <Tags />
+                  <Tags detail={this.props.detail}/>
                     {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
 
