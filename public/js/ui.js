@@ -4,12 +4,6 @@ $(function(){
     slickFilter();
 })
 
-$(window).load(function() {
-    console.log("console> window.onloade() 첫번째");
-    //masonry();
-});
-
-
 // masonry
 function masonry() {
     $('.cont-list, .detail-list').isotope({
@@ -23,11 +17,25 @@ function masonry() {
 
 // slick Detail
 function slickDetail() {
-    $('.detail-dealer .swiper-wrapper').slick({
-        slidesToShow: 3,
-        slideToScroll: 1,
-        variableWidth: true
-    })
+    var $slider = $('.detail-dealer .swiper-wrapper');
+    var $progressBar = $('.detail-dealer .progress');
+    var $progressBarLabel = $('.detail-dealer .slider__label' );
+    
+    $slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {   
+      var calc = ( (nextSlide) / (slick.slideCount-1) ) * 100;
+      
+      $progressBar
+        .css('background-size', calc + '% 100%')
+        .attr('aria-valuenow', calc );
+      
+      $progressBarLabel.text( calc + '% completed' );
+    });
+    
+    $slider.slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      speed: 400
+    });  
 }
 // slick filter
 function slickFilter() {
