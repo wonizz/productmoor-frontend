@@ -3,6 +3,7 @@ import agent from '../../agent';
 
 const Tags = ({detail}) => {
   if (detail) {
+    let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png"
     return (
         <div className="cont-detail">
         <button type="button" className="btn-close-detail"></button>
@@ -17,7 +18,7 @@ const Tags = ({detail}) => {
             <div className="overview-info">
                 <div className="ov-info-head">
                     <a href="#" className="ov-link">
-                        <span>https://muuto.com/furniture/cover</span>
+                        <span>{detail.url}</span>
                     </a>
                     <button type="button" className="btn-ov like"></button>
                     <button type="button" className="btn-ov share"></button>

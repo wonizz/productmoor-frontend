@@ -10,7 +10,9 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
-  ARTICLE_PAGE_LOADED
+  ARTICLE_PAGE_LOADED,
+  ARTICLE_PAGE_UNLOADED,
+  HOME_PAGE_LOADED_MORE
 } from '../../constants/actionTypes';
 import Footer from '../Footer';
 
@@ -25,11 +27,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onDetailLoad: (payload) =>
-    dispatch({ type: ARTICLE_PAGE_LOADED, payload}),
+    dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
+  onDetailUnLoad: () =>
+    dispatch({ type: ARTICLE_PAGE_UNLOADED }),
+  onLoadMore: (payload) =>
+    dispatch({ type: HOME_PAGE_LOADED_MORE, payload }),
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () =>
-    dispatch({  type: HOME_PAGE_UNLOADED })
+    dispatch({ type: HOME_PAGE_UNLOADED })
 });
 const masonryOptions = {
   transitionDuration: 0
@@ -41,7 +47,7 @@ class Home extends React.Component {
     const articlesPromise = this.props.token ?
       agent.Articles.feed :
       agent.Articles.all;
-    this.props.onLoad(tab, articlesPromise, Promise.all([articlesPromise()]));    
+    this.props.onLoad(tab, articlesPromise, Promise.all([articlesPromise()]));
   }
 
   componentWillUnmount() {
@@ -61,18 +67,19 @@ class Home extends React.Component {
   render() {
     return (
       <div className="container">
-            <div className="inner">
-              <div className="head-cont">
-                <Banner onClickCategory={this.props.onLoad} category={this.props.category} appName={this.props.appName} />
-              </div>
-            
-              <div className={"body-cont " + (this.props.detail ? 'show-detail' : '')}>
-                  
-                  <MainView
-                  onClickDetail={this.props.onDetailLoad}
-                  />
-                  <Tags detail={this.props.detail}/>
-                    {/* <div classNameName="col-md-3">
+        <div className="inner">
+          <div className="head-cont">
+            <Banner onDetailUnLoad={this.props.onDetailUnLoad} onClickCategory={this.props.onLoad} category={this.props.category} appName={this.props.appName} />
+          </div>
+
+          <div className={"body-cont " + (this.props.detail ? 'show-detail' : '')}>
+
+            <MainView
+              onClickDetail={this.props.onDetailLoad}
+              onLoadMore={this.props.onLoadMore}
+            />
+            <Tags detail={this.props.detail} />
+            {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
 
                         <p>Popular Tags</p>
@@ -83,13 +90,13 @@ class Home extends React.Component {
 
                       </div>
                     </div> */}
-                    
-              </div>
-            </div>
+
+          </div>
+        </div>
       </div>
     );
   }
-  
+
 }
 
 

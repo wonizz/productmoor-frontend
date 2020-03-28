@@ -4,6 +4,8 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import Masonry from 'react-masonry-component';
+import InfiniteScroll from "react-infinite-scroll-component";
+import MasonryInfiniteScroller from 'react-masonry-infinite';
 import { Link } from 'react-router';
 
 const YourFeedTab = props => {
@@ -15,9 +17,9 @@ const YourFeedTab = props => {
 
     return (
       <li classNameName="nav-item">
-        <a  href="#"
-            classNameName={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
-            onClick={clickHandler}>
+        <a href="#"
+          classNameName={props.tab === 'feed' ? 'nav-link active' : 'nav-link'}
+          onClick={clickHandler}>
           Your Feed
         </a>
       </li>
@@ -35,7 +37,7 @@ const GlobalFeedTab = props => {
     <li classNameName="nav-item">
       <a
         href=""
-        classNameName={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
+        classNameName={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
         onClick={clickHandler}>
         Global Feed
       </a>
@@ -58,7 +60,7 @@ const TagFilterTab = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.articleList,  
+  ...state.articleList,
   tags: state.home.tags,
   token: state.common.token
 });
@@ -67,38 +69,57 @@ const mapDispatchToProps = dispatch => ({
   onTabClick: (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload })
 });
 
+window.localStorage.setItem('size', 10);
+window.localStorage.setItem('from', 10);
+
 const MainView = props => {
-    if (!props.articles) {
-        return (
-            <div className="cont-list">Loading...</div>
-        );
-      }
+  if (!props.articles) {
+    return (
+      <div className="cont-list">Loading...</div>
+    );
+  }
+
   return (
-    
-    <Masonry
-                className={'cont-list'} // default ''
-                elementType={'div'} // default 'div'
-                disableImagesLoaded={false} // default false
-                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-            >
-                        {
-                        props.articles.map((article, index) =>{
-                            const handleClick = ev => {
-                              ev.preventDefault();
-                              props.onClickDetail(agent.Articles.byTitle(article._source.product_title));
-                            };  
-                            return (
-                                <Link to={'#'} className="img-cell" onClick={handleClick}>
-                                <figure>
-                                    <img src={article._source.image_crawling} alt=""/>
-                                    <figcaption></figcaption>
-                                </figure>
-                                </Link>
-                            );
-                        })
-                        }
-            </Masonry>
-      
+
+    // <Masonry
+    //   className={'cont-list'} // default ''
+    //   elementType={'div'} // default 'div'
+    //   disableImagesLoaded={false} // default false
+    //   updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+    // >
+    //   <InfiniteScroll
+    //     dataLength={props.articles.length}
+    //     next={props.onLoadMore(agent.Articles.onLoadMore())}
+    //     hasMore={true}
+    //     loader={<h4>Infinite !</h4>}
+    //   >
+
+    <MasonryInfiniteScroller
+      hasMore={true}
+      //loadMore={props.onLoadMore(agent.Articles.onLoadMore(2, props.from))}
+      loader={<div className="loader" key={0}>Loading ..........</div>}
+    >
+      {
+        props.articles.map((article, index) => {
+          const handleClick = ev => {
+            ev.preventDefault();
+            props.onClickDetail(agent.Articles.byTitle(article._source.product_title));
+          };
+          return (
+            <Link to={''} className="img-cell" onClick={handleClick}>
+              <figure>
+                <img src={article._source.image_crawling} alt="" />
+                <figcaption></figcaption>
+              </figure>
+            </Link>
+          );
+        })
+      }
+    </MasonryInfiniteScroller >
+
+    //   </InfiniteScroll>
+    // </Masonry>
+
   );
 };
 

@@ -25,7 +25,7 @@ const requests = {
   post: (url, body) =>
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   set: (url, body) =>
-  superagent.get(`${url}`, body).use(tokenPlugin).then(responseBody)
+    superagent.get(`${url}`, body).use(tokenPlugin).then(responseBody)
 };
 
 const Auth = {
@@ -47,13 +47,15 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=2`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id}`),
   byCategory: (id, page) =>
-  requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category_addtional:${id}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category_addtional:${id}`),
+  onLoadMore: (size, from) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}`),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>

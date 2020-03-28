@@ -21,7 +21,8 @@ export default (state = {}, action) => {
         commentErrors: action.error ? action.payload.errors : null,
         comments: action.error ?
           null :
-          (state.comments || []).concat([action.payload.comment])
+          (state.comments || []).concat([action.payload.comment]),
+        detail : ''
       };
     case DELETE_COMMENT:
       const commentId = action.commentId
