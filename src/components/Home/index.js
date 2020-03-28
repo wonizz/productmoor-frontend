@@ -78,7 +78,7 @@ class Home extends React.Component {
               onClickDetail={this.props.onDetailLoad}
               onLoadMore={this.props.onLoadMore}
             />
-            <Tags detail={this.props.detail} />
+            <Tags onDetailUnLoad={this.props.onDetailUnLoad} detail={this.props.detail} online={this.props.online} related={this.props.related} />
             {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
 

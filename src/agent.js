@@ -47,11 +47,15 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=2`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id}`),
+  byTitleOnline: (id, page) =>
+    requests.set(`http://52.78.116.176:9200/onlineshop-*/_search?pretty&size=10&q=product_title:${id}`),
+  byTitleRelated: (id, page) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category:${id}`),
   byCategory: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category_addtional:${id}`),
   onLoadMore: (size, from) =>

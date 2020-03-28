@@ -10,7 +10,9 @@ export default (state = {}, action) => {
     case ARTICLE_PAGE_LOADED:
       return {
         ...state,
-        detail: action.payload.hits.hits[0]._source,
+        detail: action.payload[0].hits.hits.length != 0 ? action.payload[0].hits.hits[0]._source : "",
+        online: action.payload[1].hits.hits.length != 0 ? action.payload[1].hits.hits : "",
+        related: action.payload[2].hits.hits.length != 0 ? action.payload[2].hits.hits : ""
         //comments: action.payload[1].comments
       };
     case ARTICLE_PAGE_UNLOADED:

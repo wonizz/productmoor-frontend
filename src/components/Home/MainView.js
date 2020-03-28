@@ -103,7 +103,7 @@ const MainView = props => {
         props.articles.map((article, index) => {
           const handleClick = ev => {
             ev.preventDefault();
-            props.onClickDetail(agent.Articles.byTitle(article._source.product_title));
+            props.onClickDetail(Promise.all([agent.Articles.byTitle(article._source.product_title), agent.Articles.byTitleOnline(article._source.product_title), agent.Articles.byTitleRelated(article._source.category)]));
           };
           return (
             <Link to={''} className="img-cell" onClick={handleClick}>
