@@ -71,6 +71,11 @@ const mapDispatchToProps = dispatch => ({
 
 window.localStorage.setItem('size', 10);
 window.localStorage.setItem('from', 10);
+const sizes = [
+  { columns: 2, gutter: 10 },
+  { mq: '768px', columns: 3, gutter: 25 },
+  { mq: '1024px', columns: 4, gutter: 50 }
+]
 
 const MainView = props => {
   if (!props.articles) {
@@ -79,26 +84,25 @@ const MainView = props => {
     );
   }
 
+  
   return (
-
-    // <Masonry
-    //   className={'cont-list'} // default ''
-    //   elementType={'div'} // default 'div'
-    //   disableImagesLoaded={false} // default false
-    //   updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-    // >
-    //   <InfiniteScroll
-    //     dataLength={props.articles.length}
-    //     next={props.onLoadMore(agent.Articles.onLoadMore())}
-    //     hasMore={true}
-    //     loader={<h4>Infinite !</h4>}
-    //   >
-
-    <MasonryInfiniteScroller
-      hasMore={true}
-      //loadMore={props.onLoadMore(agent.Articles.onLoadMore(2, props.from))}
-      loader={<div className="loader" key={0}>Loading ..........</div>}
+    <InfiniteScroll
+    dataLength={props.articles.length}
+    hasMore={false}
+    //next={props.onLoadMore(agent.Articles.onLoadMore(2, props.from))}
+    loader={<h4>Infinite !</h4>}
+    scrollThreshold={0.8}
     >
+      <Masonry
+        className={'cont-list'} // default ''
+        elementType={'div'} // default 'div'
+        disableImagesLoaded={false} // default false
+        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+      >
+
+     
+
+   
       {
         props.articles.map((article, index) => {
           const handleClick = ev => {
@@ -115,10 +119,10 @@ const MainView = props => {
           );
         })
       }
-    </MasonryInfiniteScroller >
-
-    //   </InfiniteScroll>
-    // </Masonry>
+    
+       </Masonry>
+     </InfiniteScroll>
+     
 
   );
 };

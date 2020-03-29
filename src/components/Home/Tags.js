@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../../agent';
 
-const Tags = ({detail, online, related, onDetailUnLoad}) => {
+const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
   if (detail) {
     let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png"
     const clickHandler = ev => {
@@ -95,8 +95,12 @@ const Tags = ({detail, online, related, onDetailUnLoad}) => {
                     {
                         related.map((related_detail, index) => {
                         let related_detail_info = related_detail._source;
+                        const handleClick = ev => {
+                            ev.preventDefault();
+                            onClickDetail(Promise.all([agent.Articles.byTitle(related_detail_info.product_title), agent.Articles.byTitleOnline(related_detail_info.product_title), agent.Articles.byTitleRelated(related_detail_info.category)]));
+                        };
                             return (
-                                <a href="#" className="img-cell">
+                                <a href="#" className="img-cell" onClick={handleClick}>
                                     <img src={related_detail_info.image_crawling} alt=""/>
                                 </a>
                             )

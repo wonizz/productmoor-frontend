@@ -56,11 +56,15 @@ class Home extends React.Component {
 
   componentDidMount() {
     //this.$el = $(this.el);
+    //window.masonry();
     console.log('didmount')
   }
 
   componentDidUpdate() {
-    //this.$el = $(this.el);
+    //this.$el = $(this.el)
+    //window.masonry();
+    window.goTop();
+    window.slickDetail();
     console.log('didupdate')
   }
 
@@ -78,7 +82,13 @@ class Home extends React.Component {
               onClickDetail={this.props.onDetailLoad}
               onLoadMore={this.props.onLoadMore}
             />
-            <Tags onDetailUnLoad={this.props.onDetailUnLoad} detail={this.props.detail} online={this.props.online} related={this.props.related} />
+            <Tags 
+              onClickDetail={this.props.onDetailLoad}
+              onDetailUnLoad={this.props.onDetailUnLoad} 
+              detail={this.props.detail} 
+              online={this.props.online} 
+              related={this.props.related} 
+            />
             {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
 

@@ -17,7 +17,7 @@ function masonry() {
 
 // slick Detail
 function slickDetail() {
-    var $slider = $('.detail-dealer .swiper-wrapper');
+    var $slider = $('.detail-dealer .swiper-wrapper').not('.slick-initialized');
     var $progressBar = $('.detail-dealer .progress');
     var $progressBarLabel = $('.detail-dealer .slider__label' );
     
@@ -45,4 +45,11 @@ function slickFilter() {
         infinite: false,
         variableWidth: true
     })
+}
+
+function goTop(){
+	$('html').scrollTop(0);
+	// scrollTop 메서드에 0 을 넣어서 실행하면 끝 !!
+	// 간혹 이 소스가 동작하지 않는다면
+	// $('html, body') 로 해보세요~
 }
