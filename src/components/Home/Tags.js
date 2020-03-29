@@ -21,7 +21,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
             </div>
             <div className="overview-info">
                 <div className="ov-info-head">
-                    <a href={detail.url} className="ov-link">
+                    <a href={`/forwarding.html?redirect=${detail.url}`} className="ov-link">
                         <span>{detail.url}</span>
                     </a>
                     <button type="button" className="btn-ov like"></button>
@@ -68,7 +68,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                         let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
                         return (
                             <figure className="swiper-slide slide-detail">
-                            <a href="#">
+                            <a href={`/forwarding.html?redirect=${online_detail_info.url}`}>
                                 <img src={online_detail_info.image_crawling} alt=""/>
                             </a>
                                 <figcaption>

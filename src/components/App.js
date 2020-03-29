@@ -67,23 +67,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <div className="preloader">
-          <div className="loader">
-            <span className="dot"></span>
-            <div className="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-        <div className="wrap">
-        <Header
-          appName={this.props.appName}
-          currentUser={this.props.currentUser}
-          onSearchLoad={this.props.onSearchLoad} />
-        <Footer />
-        </div>
+      {this.props.children}
       </div>
       
     );

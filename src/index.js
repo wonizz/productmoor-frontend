@@ -9,6 +9,7 @@ import Article from './components/Article';
 import Editor from './components/Editor';
 import Home from './components/Home';
 import Login from './components/Login';
+import Redirect from './components/Redirect';
 import Profile from './components/Profile';
 import ProfileFavorites from './components/ProfileFavorites';
 import Register from './components/Register';
@@ -24,6 +25,7 @@ ReactDOM.render((
         <Route path="editor" component={Editor} />
         <Route path="editor/:slug" component={Editor} />
         <Route path="detail/:id" component={Article} />
+        <Route path="redirect/?:id" component={Redirect} />
         <Route path="settings" component={Settings} />
         <Route path="@:username" component={Profile} />
         <Route path="@:username/favorites" component={ProfileFavorites} />

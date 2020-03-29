@@ -1,4 +1,6 @@
 export const APP_LOAD = 'APP_LOAD';
+export const APP_UNLOAD = 'APP_UNLOAD';
+export const APP_REDIRECT = 'APP_REDIRECT';
 export const REDIRECT = 'REDIRECT';
 export const ARTICLE_SUBMITTED = 'ARTICLE_SUBMITTED';
 export const SETTINGS_SAVED = 'SETTINGS_SAVED';

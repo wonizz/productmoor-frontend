@@ -1,5 +1,7 @@
 import {
   APP_LOAD,
+  APP_UNLOAD,
+  APP_REDIRECT,
   REDIRECT,
   LOGOUT,
   ARTICLE_SUBMITTED,
@@ -33,6 +35,16 @@ export default (state = defaultState, action) => {
         appLoaded: true,
         currentUser: action.payload ? action.payload.user : null
       };
+    case APP_UNLOAD:
+      return {
+        ...state,
+        appLoaded: false
+      };
+    case APP_REDIRECT:
+      return {
+        ...state,
+        redirecturl: action.redirect_url
+    };
     case REDIRECT:
       return { ...state, redirectTo: null };
     case LOGOUT:

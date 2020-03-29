@@ -46,10 +46,10 @@ function slickFilter() {
         variableWidth: true
     })
 }
-
+//상단 고정
 function goTop(){
 	$('html').scrollTop(0);
-	// scrollTop 메서드에 0 을 넣어서 실행하면 끝 !!
-	// 간혹 이 소스가 동작하지 않는다면
-	// $('html, body') 로 해보세요~
 }
+
+    
+
