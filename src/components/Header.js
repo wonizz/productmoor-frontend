@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
+import agent from '../agent';
 
-const LoggedOutView = props => {
-  if (!props.currentUser) {
+const LoggedOutView = ({props, onSearchLoad}) => {
+  if (true) {
+    const clickHandler = ev => {
+      if (ev.key === 'Enter') {
+        onSearchLoad(agent.Articles.bySearchKeword(30, ev.target.value));
+      }
+    }
     return (
         <header className="header">
         <div className="inner">
@@ -11,7 +17,7 @@ const LoggedOutView = props => {
             <div className="header-util">
                 <div className="cell-util search">
                     <div className="box-search">
-                        <input type="search" className="text" id="serchMoor"/>
+                        <input type="search" className="text" id="serchMoor" onKeyDown={clickHandler} />
                         <div className="search-keyword">
                             <div className="cell-keyword">
                                 <span className="item-key">Arper</span>

@@ -9,7 +9,8 @@ import {
   PROFILE_PAGE_LOADED,
   PROFILE_PAGE_UNLOADED,
   PROFILE_FAVORITES_PAGE_LOADED,
-  PROFILE_FAVORITES_PAGE_UNLOADED
+  PROFILE_FAVORITES_PAGE_UNLOADED,
+  HOME_PAGE_LOADED_MORE
 } from '../constants/actionTypes';
 
 export default (state = {}, action) => {
@@ -51,10 +52,24 @@ export default (state = {}, action) => {
         ...state,
         pager: action.pager,
         detail: '',
-        articles: action.payload[0] ? action.payload[0].hits.hits : action.payload.hits.hits,        
+        articles: action.payload[0] ? action.payload[0].hits.hits : action.payload.hits.hits,
         //articlesCount: action.payload[1].articlesCount,
         currentPage: 0,
-        tab: action.tab
+        tab: action.tab,
+        size: 10,
+        from: 0,
+      };
+    case HOME_PAGE_LOADED_MORE:
+      return {
+        ...state,
+        pager: action.pager,
+        detail: '',
+        articles: action.payload[0] ? state.articles.concat(action.payload[0].hits.hits) : state.articles.concat(action.payload.hits.hits),
+        //articlesCount: action.payload[1].articlesCount,
+        currentPage: 0,
+        tab: action.tab,
+        size: 2,
+        from: state.from + 2,
       };
     case HOME_PAGE_UNLOADED:
       return {};

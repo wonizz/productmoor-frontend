@@ -4,7 +4,7 @@ import Footer from './Footer';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT, HOME_PAGE_LOADED } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
   appLoaded: state.common.appLoaded,
@@ -17,6 +17,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLoad: (payload, token) =>
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
+  onSearchLoad: (payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, payload }),  
   onRedirect: () =>
     dispatch({ type: REDIRECT })
 });
@@ -55,7 +57,8 @@ class App extends React.Component {
         <div className="wrap">
           <Header
             appName={this.props.appName}
-            currentUser={this.props.currentUser} />
+            currentUser={this.props.currentUser} 
+            onSearchLoad={this.props.onSearchLoad} />
           {this.props.children}
           <Footer />
         </div>
@@ -64,22 +67,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <div className="preloader">
-          <div className="loader">
-            <span className="dot"></span>
-            <div className="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-        <div className="wrap">
-        <Header
-          appName={this.props.appName}
-          currentUser={this.props.currentUser} />
-        <Footer />
-        </div>
+      {this.props.children}
       </div>
       
     );

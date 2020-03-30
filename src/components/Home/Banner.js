@@ -1,7 +1,7 @@
 import React from 'react';
 import agent from '../../agent';
 
-const Banner = ({category, appName, onClickCategory }) => {
+const Banner = ({category, appName, onClickCategory, onDetailUnLoad }) => {
   
   if (!category) {
     return null;
@@ -14,6 +14,7 @@ const Banner = ({category, appName, onClickCategory }) => {
         const handleClick = ev => {
           ev.preventDefault();
           onClickCategory('','',agent.Articles.byCategory(category));
+          onDetailUnLoad();
         }; 
         return (
             <a 
