@@ -1,5 +1,6 @@
 import React from 'react';
 import agent from '../../agent';
+import Masonry from 'react-masonry-component';
 
 const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
   if (detail) {
@@ -91,7 +92,12 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
       </div>
       <div className="detail-related">
           <h3 className="stit-detail">RELATED</h3>
-          <div className="detail-list">
+          <Masonry
+            className={'detail-list'} // default ''
+            elementType={'div'} // default 'div'
+            disableImagesLoaded={false} // default false
+            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+           >
                     {
                         related.map((related_detail, index) => {
                         let related_detail_info = related_detail._source;
@@ -107,7 +113,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                         })
                     }
                 
-          </div>
+          </Masonry>
           <a href="#" className="btn-detail-more">VIEW MORE</a>
       </div>
       </div>

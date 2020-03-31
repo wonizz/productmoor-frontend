@@ -6,7 +6,7 @@ $(function(){
 
 // masonry
 function masonry() {
-    $('.cont-list, .detail-list').isotope({
+    $('.detail-list').isotope({
         layoutMode: 'masonry',
         masonry: {
           columnWidth: 1,

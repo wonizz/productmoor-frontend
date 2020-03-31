@@ -62,7 +62,7 @@ class Home extends React.Component {
 
   componentDidUpdate() {
     //this.$el = $(this.el)
-    //window.masonry();
+    //setTimeout(function() { window.masonry(); }, 300);
     window.goTop();
     window.slickDetail();
     console.log('didupdate')
