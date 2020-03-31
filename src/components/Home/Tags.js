@@ -15,13 +15,13 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
             <div className="overview-image">
                 <button type="button" className="ov-nav prev"></button>
                 <a href="#" className="ov-link-img">
-                    <img src={detail.image_crawling} alt=""/>
+                    <img src={`${detail.image}`} alt={`${detail.product_title}`}/>
                 </a>
                 <button type="button" className="ov-nav next"></button>
             </div>
             <div className="overview-info">
                 <div className="ov-info-head">
-                    <a href={`/forwarding.html?redirect=${detail.url}`} className="ov-link">
+                    <a href={`${detail.url}`} className="ov-link" target="_blank">
                         <span>{detail.url}</span>
                     </a>
                     <button type="button" className="btn-ov like"></button>
@@ -34,7 +34,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                                 <img src={logo} alt=""/>
                             </a>
                         </dt>
-                        <dd>COVER SIDE CHAIR / Thomas Bentzen</dd>
+                        <dd>{detail.product_title}</dd>
                     </dl>
                     <div className="accr-product active">
                         <button type="button" className="btn-accr"></button>
@@ -43,14 +43,26 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                             <p className="txt-accr">{detail.description}</p>
                             
                             <ul className="spec-accr">
-                                <li>
-                                    <strong>COLOR : </strong>
-                                    <span>BLACK/OAK/GREY/GREEN</span>
-                                </li>
-                                <li>
-                                    <strong>SIZE/VARIANT :</strong>
-                                    <span>WOODEN SEAT/TEXTILE SEAT/LEATHER SEAT</span>
-                                </li>
+                                {
+                                    `${detail.material}` != ""
+                                    ?(
+                                        <li>
+                                            <strong>Material</strong>
+                                            <span>{detail.material}</span>
+                                        </li>    
+                                    )
+                                    :('')                                     
+                                }
+                                {
+                                    `${detail.dimensions}` != ""
+                                    ?(
+                                        <li>
+                                            <strong>Dimension</strong>
+                                            <span>{detail.dimensions}</span>
+                                        </li>   
+                                    )
+                                    :('')
+                                } 
                             </ul>
                             
                         </article>
@@ -59,7 +71,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
             </div>
         </div>
     <div className="detail-dealer">
-          <h3 className="stit-detail">DEALER</h3>
+          <h3 className="stit-detail">Online Shop</h3>
           <div className="swiper-container">
               <div className="swiper-wrapper">
                     {
@@ -68,13 +80,13 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                         let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
                         return (
                             <figure className="swiper-slide slide-detail">
-                            <a href={`/forwarding.html?redirect=${online_detail_info.url}`}>
-                                <img src={online_detail_info.image_crawling} alt=""/>
+                            <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank">
+                                <img src={online_detail_info.image} alt={`${online_detail_info.title}`}/>
                             </a>
                                 <figcaption>
                                     <dl className="info-deal">
                                         <dt>
-                                            <img src={shop_logo} alt=""/>
+                                            <img src={shop_logo} alt={`${online_detail_info.shop}`}/>
                                         </dt>
                                         <dd>{online_detail_info.shop}</dd>
                                         <dd>{online_detail_info.title}</dd>
@@ -90,25 +102,25 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
           </div>
       </div>
       <div className="detail-related">
-          <h3 className="stit-detail">RELATED</h3>
+          <h3 className="stit-detail">Related</h3>
           <div className="detail-list">
                     {
                         related.map((related_detail, index) => {
                         let related_detail_info = related_detail._source;
                         const handleClick = ev => {
                             ev.preventDefault();
-                            onClickDetail(Promise.all([agent.Articles.byTitle(related_detail_info.product_title), agent.Articles.byTitleOnline(related_detail_info.product_title), agent.Articles.byTitleRelated(related_detail_info.category)]));
+                            onClickDetail(Promise.all([agent.Articles.byTitle(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleOnline(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleRelated(related_detail_info.category)]));
                         };
                             return (
                                 <a href="#" className="img-cell" onClick={handleClick}>
-                                    <img src={related_detail_info.image_crawling} alt=""/>
+                                    <img src={related_detail_info.image} alt=""/>
                                 </a>
                             )
                         })
                     }
                 
           </div>
-          <a href="#" className="btn-detail-more">VIEW MORE</a>
+          <a href="#" className="btn-detail-more">View More</a>
       </div>
       </div>
     );

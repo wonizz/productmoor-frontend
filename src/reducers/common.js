@@ -23,7 +23,7 @@ const defaultState = {
   appName: 'Product Moor',
   token: null,
   viewChangeCounter: 0,
-  category: {"category":["Furniture","Chairs","Stools","Tables","Sofas","Lighting","Accessories"]},
+  category: {"category":["Furniture","Chair","Sofa", "Table","Storage","Kitchen Furniture","Complement","Outdoor", "Office", "Lighting", "Table Lighting", "Floor Lighting", "Wall Lighting", "Pendants","Accessories", "Kitchen Accessories", "Home Accessories", "Textile"]},
 };
 
 export default (state = defaultState, action) => {
