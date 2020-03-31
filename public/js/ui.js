@@ -2,6 +2,7 @@ $(function(){
     //masonry();
     slickDetail();
     slickFilter();
+    activeMenu();
 })
 
 // masonry
@@ -48,11 +49,14 @@ function slickFilter() {
 }
 
 function goTop(){
+    if(window.clickBlock) return false;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     width < 500 ? $('html div').scrollTop(0) : $('html, body').scrollTop(0);
-    
-    
-	// scrollTop 메서드에 0 을 넣어서 실행하면 끝 !!
-	// 간혹 이 소스가 동작하지 않는다면
-	// $('html, body') 로 해보세요~
+}
+
+function activeMenu(){
+    $('.slick-track > a').click(function(){
+        $('.slick-track > a').removeClass('active');
+        $(this).addClass('active')
+    });
 }

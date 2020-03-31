@@ -2,12 +2,20 @@ import React from 'react';
 import agent from '../../agent';
 import Masonry from 'react-masonry-component';
 
-const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
+const Tags = ({relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore}) => {
   if (detail) {
-    let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png"
+    let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png";
+    let category = detail.category;
+    var clickBlock = false;
     const clickHandler = ev => {
         ev.preventDefault();
         onDetailUnLoad();
+        window.clickBlock = false;
+    };
+    const handleClickRelatedMore = ev => {
+        ev.preventDefault();
+        onRelatedLoadMore(agent.Articles.byTitleRelatedMore(category, relatedFrom));
+        window.clickBlock = true;
     };
     return (
         <div className="cont-detail">
@@ -116,6 +124,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                         const handleClick = ev => {
                             ev.preventDefault();
                             onClickDetail(Promise.all([agent.Articles.byTitle(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleOnline(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleRelated(related_detail_info.category)]));
+                            window.clickBlock = false;
                         };
                             return (
                                 <a href="#" className="img-cell" onClick={handleClick}>
@@ -125,7 +134,7 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                         })
                     }
           </Masonry>
-          <a href="#" className="btn-detail-more">View More</a>
+          <a href="#" className="btn-detail-more" onClick={handleClickRelatedMore}>View More</a>
       </div>
       </div>
     );

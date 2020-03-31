@@ -12,6 +12,7 @@ import {
   APPLY_TAG_FILTER,
   ARTICLE_PAGE_LOADED,
   ARTICLE_PAGE_UNLOADED,
+  ARTICLE_PAGE_LOADED_MORE,
   HOME_PAGE_LOADED_MORE
 } from '../../constants/actionTypes';
 import Footer from '../Footer';
@@ -28,6 +29,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onDetailLoad: (payload) =>
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
+  onRelatedLoadMore: (payload) =>
+    dispatch({ type: ARTICLE_PAGE_LOADED_MORE, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onLoadMore: (payload) =>
@@ -85,9 +88,11 @@ class Home extends React.Component {
             <Tags 
               onClickDetail={this.props.onDetailLoad}
               onDetailUnLoad={this.props.onDetailUnLoad} 
+              onRelatedLoadMore={this.props.onRelatedLoadMore}
               detail={this.props.detail} 
               online={this.props.online} 
               related={this.props.related} 
+              relatedFrom={this.props.from}
             />
             {/* <div classNameName="col-md-3">
                       <div classNameName="sidebar">
