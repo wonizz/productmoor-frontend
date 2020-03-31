@@ -201,7 +201,7 @@ ol {
 }
 .menu-swiper .slick-arrow {
     position: absolute;
-    top: 10px;
+    top: 0;
     width: 26px;
     height: 26px;
     margin: auto;
@@ -486,6 +486,7 @@ ol {
     padding: 0 20px 0 25px;
     width: 555px;
     border-left: 1px solid #d0d0d0;
+    background: #ffffff;
 }
 .btn-close-detail {
     position: absolute;
@@ -536,6 +537,7 @@ ol {
     font-size: 0;
     line-height: 0;
     max-height: 100%;
+    width: auto;
     margin: auto;
     border-radius: 5px;
 }
@@ -701,6 +703,7 @@ ol {
     width: 248px;
     padding: 0;
     margin: 5px;
+    border-radius: 4px;
 }
 .btn-detail-more {
     display: block;
@@ -715,8 +718,10 @@ ol {
     margin: 18px 0 0;
 }
 .detail-dealer .swiper-slide {
+    overflow: hidden;
     margin: 0 10px;
     width: 230px;
+    border-radius: 4px;
 }
 .detail-dealer .swiper-slide:first-child {
     margin-left: 0;
@@ -1154,7 +1159,6 @@ ol {
     background: #b2b2b2;
     color: #ffffff;
     font-size: 13px;
-    line-height: 1.2;
     font-weight: 300;
 }
 
@@ -1473,11 +1477,11 @@ ol {
     .cont-detail {
         position: fixed;
         left: 100%;
-        top: 12.077vw;
+        top: 11.077vw;
         margin: 0;
         padding: 0;
         width: 100vw;
-        height: calc(100vh - 12.077vw);
+        height: calc(100vh - 11.077vw);
         background: #ffffff;
         z-index: 10;
     }
@@ -1631,11 +1635,12 @@ ol {
         padding: 0 4.831vw;
     }
     .detail-list {
-        margin: 2.415vw -1.208vw;
+        margin: 2.415vw -1.207vw;
+        width: 90.338vw;
     }
     .detail-list .img-cell {
-        margin: 1.208vw;
-        width: 43.961vw;
+        margin: 1.207vw;
+        width: 42.536vw;
     }
     .btn-detail-more {
         display: flex;
@@ -1643,7 +1648,7 @@ ol {
         justify-content: center;
         margin: 0 0 24.155vw;
         height: 7.246vw;
-        font-size: 1rem;
+        font-size: 3.864vw;
     }
     /* footer */
     .footer {
