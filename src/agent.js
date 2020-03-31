@@ -50,10 +50,10 @@ const Articles = {
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTitle: (id, page) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id}`),
-  byTitleOnline: (id, page) =>
-    requests.set(`http://52.78.116.176:9200/onlineshop-*/_search?pretty&size=10&q=product_title:${id}`),
+  byTitle: (id, vendor) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id} and vendor:${vendor}`),
+  byTitleOnline: (id, vendor) =>
+    requests.set(`http://52.78.116.176:9200/onlineshop-*/_search?pretty&size=10&q=product_title:${id} and vendor:${vendor}`),
   byTitleRelated: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category:${id}`),
   byCategory: (id, page) =>
