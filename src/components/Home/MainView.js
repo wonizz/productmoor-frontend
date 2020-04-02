@@ -62,7 +62,8 @@ const TagFilterTab = props => {
 const mapStateToProps = state => ({
   ...state.articleList,
   tags: state.home.tags,
-  token: state.common.token
+  token: state.common.token,
+  from: state.articleList.from
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -84,30 +85,31 @@ const MainView = props => {
     );
   }
 
-  
+
   return (
-    <InfiniteScroll
-    dataLength={props.articles.length}
-    hasMore={false}
-    //next={props.onLoadMore(agent.Articles.onLoadMore(2, props.from))}
-    loader={<h4>Infinite !</h4>}
-    scrollThreshold={0.8}
+    // <InfiniteScroll
+    // dataLength={props.articles.length}
+    // hasMore={false}
+    // //next={props.onLoadMore(agent.Articles.onLoadMore(2, props.from))}
+    // loader={<h4>Infinite !</h4>}
+    // scrollThreshold={0.8}
+    // >
+    <Masonry
+      className={'cont-list'} // default ''
+      elementType={'div'} // default 'div'
+      disableImagesLoaded={false} // default false
+      updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
     >
-      <Masonry
-        className={'cont-list'} // default ''
-        elementType={'div'} // default 'div'
-        disableImagesLoaded={false} // default false
-        updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-      >
 
-     
 
-   
+
+
       {
         props.articles.map((article, index) => {
           const handleClick = ev => {
             ev.preventDefault();
-            props.onClickDetail(Promise.all([agent.Articles.byTitle(article._source.product_title,article._source.vendor), agent.Articles.byTitleOnline(article._source.product_title,article._source.vendor), agent.Articles.byTitleRelated(article._source.category)]));
+            props.onClickDetail(Promise.all([agent.Articles.byTitle(article._source.product_title, article._source.vendor), agent.Articles.byTitleOnline(article._source.product_title, article._source.vendor), agent.Articles.byTitleRelated(article._source.category)]));
+            window.clickBlock = false;
           };
           return (
             <Link to={''} className="img-cell" onClick={handleClick}>
@@ -119,10 +121,10 @@ const MainView = props => {
           );
         })
       }
-    
-       </Masonry>
-     </InfiniteScroll>
-     
+
+    </Masonry>
+    //  </InfiniteScroll>
+
 
   );
 };

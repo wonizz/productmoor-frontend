@@ -1,12 +1,21 @@
 import React from 'react';
 import agent from '../../agent';
+import Masonry from 'react-masonry-component';
 
-const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
+const Tags = ({relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore}) => {
   if (detail) {
-    let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png"
+    let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png";
+    let category = detail.category;
+    var clickBlock = false;
     const clickHandler = ev => {
         ev.preventDefault();
         onDetailUnLoad();
+        window.clickBlock = false;
+    };
+    const handleClickRelatedMore = ev => {
+        ev.preventDefault();
+        onRelatedLoadMore(agent.Articles.byTitleRelatedMore(category, relatedFrom));
+        window.clickBlock = true;
     };
     return (
         <div className="cont-detail">
@@ -113,13 +122,19 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
       </div>
       <div className="detail-related">
           <h3 className="stit-detail">Related</h3>
-          <div className="detail-list">
+          <Masonry
+            className={'detail-list'} // default ''
+            elementType={'div'} // default 'div'
+            disableImagesLoaded={false} // default false
+            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+           >
                     {
                         related.map((related_detail, index) => {
                         let related_detail_info = related_detail._source;
                         const handleClick = ev => {
                             ev.preventDefault();
                             onClickDetail(Promise.all([agent.Articles.byTitle(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleOnline(related_detail_info.product_title, related_detail_info.vendor), agent.Articles.byTitleRelated(related_detail_info.category)]));
+                            window.clickBlock = false;
                         };
                             return (
                                 <a href="#" className="img-cell" onClick={handleClick}>
@@ -128,9 +143,8 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                             )
                         })
                     }
-                
-          </div>
-          <a href="#" className="btn-detail-more">View More</a>
+          </Masonry>
+          <a href="#" className="btn-detail-more" onClick={handleClickRelatedMore}>View More</a>
       </div>
       </div>
     );
