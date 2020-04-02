@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   onLoad: (payload, token) =>
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
   onSearchLoad: (payload) =>
-    dispatch({ type: HOME_PAGE_LOADED, payload }),  
+    dispatch({ type: HOME_PAGE_LOADED, payload }),
   onRedirect: () =>
     dispatch({ type: REDIRECT })
 });
@@ -44,32 +44,31 @@ class App extends React.Component {
     if (this.props.appLoaded) {
       return (
         <div>
-        <div className="preloader">
-          <div className="loader">
-            <span className="dot"></span>
-            <div className="dots">
-              <span></span>
-              <span></span>
-              <span></span>
+          <div className="preloader">
+            <div className="loader">
+              <span className="dot"></span>
+              <div className="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="wrap">
-          <Header
-            appName={this.props.appName}
-            currentUser={this.props.currentUser} 
-            onSearchLoad={this.props.onSearchLoad} />
-          {this.props.children}
-          <Footer />
-        </div>
+          <div className="wrap">
+            <Header
+              appName={this.props.appName}
+              currentUser={this.props.currentUser}
+              onSearchLoad={this.props.onSearchLoad} />
+            {this.props.children}
+            <Footer />
+          </div>
         </div>
       );
     }
     return (
       <div>
-      {this.props.children}
       </div>
-      
+
     );
   }
 }
