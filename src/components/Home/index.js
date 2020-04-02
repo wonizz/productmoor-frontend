@@ -65,7 +65,7 @@ class Home extends React.Component {
       if (scrollHeight - innerHeight - scrollTop < 100) {
         window.clickBlock = true;
         window.number += 1;
-        window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(20, (window.number-1)*20)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(20, (window.number-1)*20, window.category))
+        window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
 
       }
     };

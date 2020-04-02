@@ -145,7 +145,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                 })
                             }
                         </Masonry>
-                        <a href="#" className="btn-detail-more" onClick={handleClickRelatedMore}>View More</a>
+                        {/*<a href="#" className="btn-detail-more" onClick={handleClickRelatedMore}>View More</a>*/}
                     </div>
                 </div>
             </div>
