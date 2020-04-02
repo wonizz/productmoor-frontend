@@ -54,11 +54,21 @@ const Tags = ({detail, online, related, onDetailUnLoad, onClickDetail}) => {
                                     :('')                                     
                                 }
                                 {
-                                    `${detail.dimensions}` != ""
+                                    `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` == ""
                                     ?(
                                         <li>
                                             <strong>Dimension</strong>
                                             <span>{detail.dimensions}</span>
+                                        </li>   
+                                    )
+                                    :('')
+                                } 
+                                {
+                                    `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` != ""
+                                    ?(
+                                        <li>
+                                            <strong>Dimension</strong>
+                                            <img src={`${detail.dimensions}`} alt=""/>
                                         </li>   
                                     )
                                     :('')
