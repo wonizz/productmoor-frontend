@@ -98,7 +98,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                                         <dt>
                                                             <img src={shop_logo} alt={`${online_detail_info.shop}`} />
                                                         </dt>
-                                                        <dd>{online_detail_info.shop}</dd>
+                                                        <dd>{online_detail_info.vendor}</dd>
                                                         <dd>{online_detail_info.title}</dd>
                                                         <dd>{online_detail_info.price} {online_detail_info.currencyunit}</dd>
                                                     </dl>
