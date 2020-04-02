@@ -47,7 +47,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                     <dd>{detail.product_title}</dd>
                                 </dl>
                                 <div className="accr-product active">
-                                    <button type="button" className="btn-accr"></button>
+                                    {/*<button type="button" className="btn-accr"></button>*/}
                                     <article className="accr-detail">
                                         <h3 className="stit-accr">PRODUCT DESCRIPTIONS</h3>
                                         <p className="txt-accr">{detail.description}</p>
@@ -64,14 +64,24 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                                     : ('')
                                             }
                                             {
-                                                `${detail.dimensions}` != ""
-                                                    ? (
-                                                        <li>
-                                                            <strong>Dimension</strong>
-                                                            <span>{detail.dimensions}</span>
-                                                        </li>
-                                                    )
-                                                    : ('')
+                                            `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` == ""
+                                            ?(
+                                                <li>
+                                                    <strong>Dimension</strong>
+                                                    <span>{detail.dimensions}</span>
+                                                </li>
+                                            )
+                                            :('')
+                                            }
+                                            {
+                                            `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` != ""
+                                            ?(
+                                                <li>
+                                                    <strong>Dimension</strong>
+                                                    <img src={`${detail.dimensions}`} alt={`${detail.product_title}`}/>
+                                                </li>
+                                            )
+                                            :('')
                                             }
                                         </ul>
 
@@ -98,7 +108,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                                         <dt>
                                                             <img src={shop_logo} alt={`${online_detail_info.shop}`} />
                                                         </dt>
-                                                        <dd>{online_detail_info.vendor}</dd>
+                                                        <dd>{online_detail_info.brand}</dd>
                                                         <dd>{online_detail_info.title}</dd>
                                                         <dd>{online_detail_info.price} {online_detail_info.currencyunit}</dd>
                                                     </dl>

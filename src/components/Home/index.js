@@ -52,7 +52,7 @@ class Home extends React.Component {
     const articlesPromise = this.props.token ?
       agent.Articles.feed :
       agent.Articles.all;
-    window.number = 10;
+    window.number = 1;
     const handleScroll = () => {
       const { innerHeight } = window;
       const { scrollHeight } = document.body;
@@ -64,8 +64,8 @@ class Home extends React.Component {
       // 스크롤링 했을때, 브라우저의 가장 밑에서 100정도 높이가 남았을때에 실행하기위함.
       if (scrollHeight - innerHeight - scrollTop < 100) {
         window.clickBlock = true;
-        window.number += 10;
-        window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(5, window.number)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(5, window.number, window.category))
+        window.number += 1;
+        window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(20, (window.number-1)*20)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(20, (window.number-1)*20, window.category))
 
       }
     };
