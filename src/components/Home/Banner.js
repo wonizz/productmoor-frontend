@@ -16,7 +16,7 @@ const Banner = ({ category, appName, onClickCategory, onDetailUnLoad }) => {
               onClickCategory('', '', agent.Articles.byCategory(category));
               onDetailUnLoad();
               window.category = category;
-              window.number = 10;
+              window.number = 1;
             };
             return (
               <a
