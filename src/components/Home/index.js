@@ -22,7 +22,8 @@ const mapStateToProps = state => ({
   appName: state.common.appName,
   token: state.common.token,
   category: state.common.category,
-  from: state.articleList.from
+  from: state.articleList.from,
+  searchKeyword: state.articleList.searchKeyword
 });
 
 
@@ -65,11 +66,24 @@ class Home extends React.Component {
       if (scrollHeight - innerHeight - scrollTop < 100) {
         window.clickBlock = true;
         window.number += 1;
-        window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
-
+        //window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
+        /*1. category 정보가 없는 경우
+          1-1. searchKeyword 정보가 없으면, 일반 loadmore
+          1-2. searchKeyword 정보가 있으면, bysearchKeyword loadmore
+        */
+      if (window.category == undefined) {
+        if (this.props.searchKeyword == undefined) {
+          this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30))
+        } else {
+          this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number-1)*30, this.props.searchKeyword))
+        }
+      } else {
+        this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
+      }
       }
     };
-    this.props.onLoad(tab, articlesPromise, Promise.all([articlesPromise()]));
+    //console.log(articlesPromise())
+    this.props.onLoad(tab, articlesPromise, articlesPromise());
     window.addEventListener('scroll', handleScroll, true);
   }
 
@@ -92,12 +106,32 @@ class Home extends React.Component {
   }
 
   render() {
+    const clickHandler = ev => {
+      ev.preventDefault();
+      this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30))
+    };
     return (
       <div className="container">
         <div className="inner">
           <div className="head-cont">
-            <Banner onDetailUnLoad={this.props.onDetailUnLoad} onClickCategory={this.props.onLoad} category={this.props.category} appName={this.props.appName} />
+          <Banner
+          onDetailUnLoad={this.props.onDetailUnLoad}
+          onClickCategory={this.props.onLoad}
+          category={this.props.category}
+          appName={this.props.appName} />
           </div>
+          {
+            this.props.searchKeyword !== undefined ?
+              (<div className="box-addons">
+                <span className="addon related addon-keyword">
+                  <span className="txt-addon">
+                    <em>{this.props.searchKeyword}</em>
+                    <button type="button" className="btn-del" onClick={clickHandler}></button>
+                  </span>
+                </span>
+              </div>)
+              : ("")
+          }
 
           <div className={"body-cont " + (this.props.detail ? 'show-detail' : '')}>
 

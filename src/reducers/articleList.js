@@ -58,6 +58,7 @@ export default (state = {}, action) => {
         tab: action.tab,
         size: 10,
         from: 0,
+        searchKeyword: action.searchKeyword
       };
     case HOME_PAGE_LOADED_MORE:
       return {
@@ -70,6 +71,7 @@ export default (state = {}, action) => {
         tab: action.tab,
         size: 2,
         from: state.from + 2,
+        searchKeyword: undefined
       };
     case HOME_PAGE_UNLOADED:
       return {};

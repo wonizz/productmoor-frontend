@@ -65,7 +65,9 @@ const Articles = {
   onLoadMoreByCategory: (size, from, id) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=category_addtional:${id}`),
   bySearchKeword: (size, keyword) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&keyword=${keyword}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&q=${keyword}`),
+  onLoadbySearchKeword: (size, from, keyword) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=${keyword}`),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>

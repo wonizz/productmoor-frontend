@@ -17,8 +17,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onLoad: (payload, token) =>
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
-  onSearchLoad: (payload) =>
-    dispatch({ type: HOME_PAGE_LOADED, payload }),
+    onSearchLoad: (searchKeyword, payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, searchKeyword, payload }),
   onRedirect: () =>
     dispatch({ type: REDIRECT })
 });
