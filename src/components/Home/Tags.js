@@ -9,6 +9,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
         var clickBlock = false;
         const clickHandler = ev => {
             ev.preventDefault();
+            if (ev.target !== ev.currentTarget) return;
             onDetailUnLoad();
             window.clickBlock = false;
         };
@@ -18,7 +19,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
             window.clickBlock = true;
         };
         return (
-            <div className="cont-detail">
+            <div className="cont-detail" onClick={clickHandler}>
                 <div className="detail-inner">
                     <button type="button" className="btn-close-detail" onClick={clickHandler}></button>
                     <div className="detail-overview">
