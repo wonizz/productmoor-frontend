@@ -42,12 +42,14 @@ function slickDetail() {
 }
 // slick filter
 function slickFilter() {
-
-  $('.menu-moor').slick({
-    slideToShow: 9,
-    infinite: false,
-    variableWidth: true
-  })
+  if($('.slick-next').length == 0){
+    $('.menu-moor').not('.slick-initialized').slick({
+      slideToShow: 9,
+      infinite: false,
+      variableWidth: true
+    })
+  }
+  
 }
 
 function goTop() {

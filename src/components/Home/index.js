@@ -104,6 +104,7 @@ class Home extends React.Component {
     window.searchAction();
     window.activeMenu();
     window.goTop();
+    window.slickFilter();
     window.slickDetail();
     console.log('didupdate')
   }
