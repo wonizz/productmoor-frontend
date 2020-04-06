@@ -53,7 +53,7 @@ function slickFilter() {
 function goTop() {
   if (window.clickBlock) return false;
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  width < 500 ? $('html div').scrollTop(0) : $('html, body').scrollTop(0);
+  width < 500 ? $('html div').scrollTop(0) : $('html div.detail-inner').animate({ scrollTop: 0 }, 400);;
 }
 
 function activeMenu() {
