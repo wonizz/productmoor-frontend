@@ -11,7 +11,10 @@ function masonry() {
         layoutMode: 'masonry',
         masonry: {
           columnWidth: 1,
-          horizontalOrder: false
+          horizontalOrder: false,
+          speed: 600,
+          touchMove: false,
+          swipe: true
         }
       });
 }
