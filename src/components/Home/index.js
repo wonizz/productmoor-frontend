@@ -19,6 +19,7 @@ import Footer from '../Footer';
 
 const mapStateToProps = state => ({
   ...state.article,
+  articleList: state.articleList,
   appName: state.common.appName,
   token: state.common.token,
   category: state.common.category,
@@ -71,15 +72,15 @@ class Home extends React.Component {
           1-1. searchKeyword 정보가 없으면, 일반 loadmore
           1-2. searchKeyword 정보가 있으면, bysearchKeyword loadmore
         */
-      if (window.category == undefined) {
-        if (this.props.searchKeyword == undefined) {
-          this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30))
+        if (window.category == undefined) {
+          if (this.props.searchKeyword == undefined) {
+            this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
+          } else {
+            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number - 1) * 30, this.props.searchKeyword))
+          }
         } else {
-          this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number-1)*30, this.props.searchKeyword))
+          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number - 1) * 30, window.category))
         }
-      } else {
-        this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
-      }
       }
     };
     //console.log(articlesPromise())
@@ -100,6 +101,8 @@ class Home extends React.Component {
   componentDidUpdate() {
     //this.$el = $(this.el)
     //setTimeout(function() { window.masonry(); }, 300);
+    window.searchAction();
+    window.activeMenu();
     window.goTop();
     window.slickDetail();
     console.log('didupdate')
@@ -108,20 +111,30 @@ class Home extends React.Component {
   render() {
     const clickHandler = ev => {
       ev.preventDefault();
-      this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30))
+      this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
     };
+    if (!this.props.articleList.articles) {
+      return (
+        <div></div>
+      );
+    }
     return (
       <div className="container">
         <div className="inner">
-          <div className="head-cont">
-          <Banner
-          onDetailUnLoad={this.props.onDetailUnLoad}
-          onClickCategory={this.props.onLoad}
-          category={this.props.category}
-          appName={this.props.appName} />
-          </div>
           {
-            this.props.searchKeyword !== undefined ?
+            this.props.articleList.articles.length !== 0 ?
+              (<div className="head-cont">
+                <Banner
+                  onDetailUnLoad={this.props.onDetailUnLoad}
+                  onClickCategory={this.props.onLoad}
+                  category={this.props.category}
+                  appName={this.props.appName} />
+              </div>
+              )
+              : ("")
+          }
+          {
+            this.props.searchKeyword !== undefined && this.props.articleList.articles.length !== 0 ?
               (<div className="box-addons">
                 <span className="addon related addon-keyword">
                   <span className="txt-addon">
@@ -138,6 +151,9 @@ class Home extends React.Component {
             <MainView
               onClickDetail={this.props.onDetailLoad}
               onLoadMore={this.props.onLoadMore}
+              category={this.props.category}
+              onDetailUnLoad={this.props.onDetailUnLoad}
+              onClickCategory={this.props.onLoad}
             />
             <Tags
               onClickDetail={this.props.onDetailLoad}
