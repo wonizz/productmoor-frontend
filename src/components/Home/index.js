@@ -36,8 +36,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ARTICLE_PAGE_LOADED_MORE, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
-  onLoadMore: (payload) =>
-    dispatch({ type: HOME_PAGE_LOADED_MORE, payload }),
+  onLoadMore: (payload, searchKeyword) =>
+    dispatch({ type: HOME_PAGE_LOADED_MORE, payload, searchKeyword }),
   onLoad: (tab, pager, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, tab, pager, payload }),
   onUnload: () =>
@@ -76,7 +76,7 @@ class Home extends React.Component {
           if (this.props.searchKeyword == undefined) {
             this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
           } else {
-            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number - 1) * 30, this.props.searchKeyword))
+            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number - 1) * 30, this.props.searchKeyword), this.props.searchKeyword)
           }
         } else {
           this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number - 1) * 30, window.category))
