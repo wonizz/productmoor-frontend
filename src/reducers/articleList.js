@@ -71,7 +71,7 @@ export default (state = {}, action) => {
         tab: action.tab,
         size: 2,
         from: state.from + 2,
-        searchKeyword: undefined
+        searchKeyword: action.searchKeyword
       };
     case HOME_PAGE_UNLOADED:
       return {};
