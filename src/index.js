@@ -25,7 +25,7 @@ ReactDOM.render((
         <Route path="editor" component={Editor} />
         <Route path="editor/:slug" component={Editor} />
         <Route path="detail/:id" component={Article} />
-        <Route path="redirect/?:id" component={Redirect} />
+        <Route path="redirect/:id" component={Redirect} />
         <Route path="settings" component={Settings} />
         <Route path="@:username" component={Profile} />
         <Route path="@:username/favorites" component={ProfileFavorites} />

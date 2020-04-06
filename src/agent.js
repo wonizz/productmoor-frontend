@@ -47,7 +47,7 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, vendor) =>
@@ -57,13 +57,17 @@ const Articles = {
   byTitleRelated: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category:${id}`),
   byTitleRelatedMore: (id, from) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&from=${from}&q=category:${id}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30&from=${from}&q=category:${id}`),
   byCategory: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30&q=category_addtional:${id}`),
   onLoadMore: (size, from) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}`),
+  onLoadMoreByCategory: (size, from, id) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=category_addtional:${id}`),
   bySearchKeword: (size, keyword) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&keyword=${keyword}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&q=${keyword}`),
+  onLoadbySearchKeword: (size, from, keyword) =>
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=${keyword}`),
   del: slug =>
     requests.del(`/articles/${slug}`),
   favorite: slug =>

@@ -5,8 +5,14 @@ import agent from '../agent';
 const LoggedOutView = ({props, onSearchLoad}) => {
   if (true) {
     const clickHandler = ev => {
+        window.category = undefined;
+        onSearchLoad(window.searchKeyword, agent.Articles.bySearchKeword(20, window.searchKeyword));
+    }
+    const keyHandler = ev => {
+      window.searchKeyword = ev.target.value;
       if (ev.key === 'Enter') {
-        onSearchLoad(agent.Articles.bySearchKeword(30, ev.target.value));
+        window.category = undefined;
+        onSearchLoad(ev.target.value, agent.Articles.bySearchKeword(20, ev.target.value));
       }
     }
     return (
@@ -16,33 +22,10 @@ const LoggedOutView = ({props, onSearchLoad}) => {
             </h1>
             <div className="header-util">
                 <div className="cell-util search">
-                    <div className="box-search">
-                        <input type="search" className="text" id="serchMoor" onKeyDown={clickHandler} />
-                        <div className="search-keyword">
-                            <div className="cell-keyword">
-                                <span className="item-key">Arper</span>
-                                <span className="item-key">Nanimarquina</span>
-                                <span className="item-key">Desalto</span>
-                            </div>
-                            <div className="cell-keyword">
-                                <span className="item-key">Lighting</span>
-                                <span className="item-key">Kitchen &amp; Dining</span>
-                                <span className="item-key">Textiles</span>
-                            </div>
-                        </div>
+                    <div className="box-search active">
+                        <input type="search" className="text" id="serchMoor" onKeyDown={keyHandler} onChange={keyHandler}/>
                     </div>
-                    <label for="serchMoor" className="btn-util">검색</label>
-                </div>
-                <div className="cell-util menu">
-                    <button className="btn-util" type="button">메뉴</button>
-                    <nav className="box-menu">
-                        <a href="#" className="btn-menu">SHOPPING LIST</a>
-                        <a href="#" className="btn-menu">WISH LIST</a>
-                        <a href="#" className="btn-menu">MY ACCOUNT</a>
-                    </nav>
-                </div>
-                <div className="cell-util myaccount">
-                    <button className="btn-util" type="button">내 계정</button>
+                    <label for="serchMoor" className="btn-util" onClick={clickHandler}>검색</label>
                 </div>
             </div>
         </div>
@@ -101,7 +84,10 @@ class Header extends React.Component {
             {this.props.appName.toLowerCase()}
           </Link> */}
 
-          <LoggedOutView currentUser={this.props.currentUser} />
+          <LoggedOutView
+          currentUser={this.props.currentUser}
+          onSearchLoad={this.props.onSearchLoad}
+          />
 
           {/* <LoggedInView currentUser={this.props.currentUser} /> */}
 
