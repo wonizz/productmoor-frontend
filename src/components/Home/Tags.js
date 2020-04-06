@@ -8,7 +8,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
         let category = detail.category;
         var clickBlock = false;
         const clickHandler = ev => {
-            ev.preventDefault();
+            //ev.preventDefault();
             if (ev.target !== ev.currentTarget) return;
             onDetailUnLoad();
             window.clickBlock = false;
