@@ -4,18 +4,17 @@ import React from 'react';
 import Tags from './Tags';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import Masonry from 'react-masonry-component';
+
 
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER,
   ARTICLE_PAGE_LOADED,
   ARTICLE_PAGE_UNLOADED,
   ARTICLE_PAGE_LOADED_MORE,
   HOME_PAGE_LOADED_MORE
 } from '../../constants/actionTypes';
-import Footer from '../Footer';
+
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -43,10 +42,6 @@ const mapDispatchToProps = dispatch => ({
   onUnload: () =>
     dispatch({ type: HOME_PAGE_UNLOADED })
 });
-const masonryOptions = {
-  transitionDuration: 0
-};
-const imagesLoadedOptions = { background: '.my-bg-image-el' }
 
 class Home extends React.Component {
   componentWillMount() {
@@ -72,8 +67,8 @@ class Home extends React.Component {
           1-1. searchKeyword 정보가 없으면, 일반 loadmore
           1-2. searchKeyword 정보가 있으면, bysearchKeyword loadmore
         */
-        if (window.category == undefined) {
-          if (this.props.searchKeyword == undefined) {
+        if (window.category === undefined) {
+          if (this.props.searchKeyword === undefined) {
             this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
           } else {
             this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number - 1) * 30, this.props.searchKeyword), this.props.searchKeyword)

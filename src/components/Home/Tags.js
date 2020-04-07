@@ -5,19 +5,19 @@ import Masonry from 'react-masonry-component';
 const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore }) => {
     if (detail) {
         let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png";
-        let category = detail.category;
-        var clickBlock = false;
+        window.category = detail.category;
+        window.clickBlock = false;
         const clickHandler = ev => {
             //ev.preventDefault();
             if (ev.target !== ev.currentTarget) return;
             onDetailUnLoad();
             window.clickBlock = false;
         };
-        const handleClickRelatedMore = ev => {
+        /*const handleClickRelatedMore = ev => {
             ev.preventDefault();
             onRelatedLoadMore(agent.Articles.byTitleRelatedMore(category, relatedFrom));
             window.clickBlock = true;
-        };
+        };*/
         return (
             <div className="cont-detail" onClick={clickHandler}>
                 <div className="detail-inner">
@@ -25,14 +25,14 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                     <div className="detail-overview">
                         <div className="overview-image">
                             <button type="button" className="ov-nav prev"></button>
-                            <a href="#" className="ov-link-img">
+                            <a href="/#" className="ov-link-img">
                                 <img src={`${detail.image}`} alt={`${detail.product_title}`} />
                             </a>
                             <button type="button" className="ov-nav next"></button>
                         </div>
                         <div className="overview-info">
                             <div className="ov-info-head">
-                                <a href={`${detail.url}`} className="ov-link" target="_blank">
+                                <a href={`${detail.url}`} className="ov-link" target="_blank" rel="noopener noreferrer">
                                     <span>{detail.url}</span>
                                 </a>
                                 <button type="button" className="btn-ov like"></button>
@@ -41,7 +41,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                             <div className="ov-info-body">
                                 <dl className="info-product">
                                     <dt>
-                                        <a href="#">
+                                        <a href="/#">
                                             <img src={logo} alt="" />
                                         </a>
                                     </dt>
@@ -55,7 +55,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
 
                                         <ul className="spec-accr">
                                             {
-                                                `${detail.material}` != ""
+                                                `${detail.material}` !== ""
                                                     ? (
                                                         <li>
                                                             <strong>Material</strong>
@@ -65,24 +65,24 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                                     : ('')
                                             }
                                             {
-                                            `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` == ""
-                                            ?(
-                                                <li>
-                                                    <strong>Dimension</strong>
-                                                    <span>{detail.dimensions}</span>
-                                                </li>
-                                            )
-                                            :('')
+                                                `${detail.dimensions}` !== "" && `${detail.dimensions_crawling}` === ""
+                                                    ? (
+                                                        <li>
+                                                            <strong>Dimension</strong>
+                                                            <span>{detail.dimensions}</span>
+                                                        </li>
+                                                    )
+                                                    : ('')
                                             }
                                             {
-                                            `${detail.dimensions}` != "" && `${detail.dimensions_crawling}` != ""
-                                            ?(
-                                                <li>
-                                                    <strong>Dimension</strong>
-                                                    <img src={`${detail.dimensions}`} alt={`${detail.product_title}`}/>
-                                                </li>
-                                            )
-                                            :('')
+                                                `${detail.dimensions}` !== "" && `${detail.dimensions_crawling}` !== ""
+                                                    ? (
+                                                        <li>
+                                                            <strong>Dimension</strong>
+                                                            <img src={`${detail.dimensions}`} alt={`${detail.product_title}`} />
+                                                        </li>
+                                                    )
+                                                    : ('')
                                             }
                                         </ul>
 
@@ -101,7 +101,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                         let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
                                         return (
                                             <figure className="swiper-slide slide-detail">
-                                                <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank">
+                                                <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
                                                     <img src={online_detail_info.image} alt={`${online_detail_info.title}`} />
                                                 </a>
                                                 <figcaption>
@@ -139,7 +139,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                         window.clickBlock = false;
                                     };
                                     return (
-                                        <a href="#" className="img-cell" onClick={handleClick}>
+                                        <a href="/#" className="img-cell" onClick={handleClick}>
                                             <img src={related_detail_info.image} alt="" />
                                         </a>
                                     )

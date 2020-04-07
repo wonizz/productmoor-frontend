@@ -4,7 +4,7 @@ import Footer from './Footer';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { APP_LOAD, REDIRECT, HOME_PAGE_LOADED } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT, HOME_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
   appLoaded: state.common.appLoaded,
@@ -19,6 +19,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
   onSearchLoad: (searchKeyword, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, searchKeyword, payload }),
+  onDetailUnLoad: () =>
+    dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onRedirect: () =>
     dispatch({ type: REDIRECT })
 });
@@ -58,7 +60,9 @@ class App extends React.Component {
             <Header
               appName={this.props.appName}
               currentUser={this.props.currentUser}
-              onSearchLoad={this.props.onSearchLoad} />
+              onSearchLoad={this.props.onSearchLoad}
+              onDetailUnLoad={this.props.onDetailUnLoad}
+            />
             {this.props.children}
             <Footer />
           </div>

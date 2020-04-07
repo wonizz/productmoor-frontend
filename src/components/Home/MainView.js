@@ -1,63 +1,10 @@
-import ArticleList from '../ArticleList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import Masonry from 'react-masonry-component';
-import InfiniteScroll from "react-infinite-scroll-component";
-import MasonryInfiniteScroller from 'react-masonry-infinite';
 import { Link } from 'react-router';
 
-const YourFeedTab = props => {
-  if (props.token) {
-    const clickHandler = ev => {
-      ev.preventDefault();
-      props.onTabClick('feed', agent.Articles.feed, agent.Articles.feed());
-    }
-
-    return (
-      <li classNameName="nav-item">
-        <a href="#"
-          classNameName={props.tab === 'feed' ? 'nav-link active' : 'nav-link'}
-          onClick={clickHandler}>
-          Your Feed
-        </a>
-      </li>
-    );
-  }
-  return null;
-};
-
-const GlobalFeedTab = props => {
-  const clickHandler = ev => {
-    ev.preventDefault();
-    props.onTabClick('all', agent.Articles.all, agent.Articles.all());
-  };
-  return (
-    <li classNameName="nav-item">
-      <a
-        href=""
-        classNameName={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
-        onClick={clickHandler}>
-        Global Feed
-      </a>
-    </li>
-  );
-};
-
-const TagFilterTab = props => {
-  if (!props.tag) {
-    return null;
-  }
-
-  return (
-    <li classNameName="nav-item">
-      <a href="" classNameName="nav-link active">
-        <i classNameName="ion-pound"></i> {props.tag}
-      </a>
-    </li>
-  );
-};
 
 const mapStateToProps = state => ({
   ...state.articleList,
@@ -70,13 +17,6 @@ const mapDispatchToProps = dispatch => ({
   onTabClick: (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload })
 });
 
-window.localStorage.setItem('size', 10);
-window.localStorage.setItem('from', 10);
-const sizes = [
-  { columns: 2, gutter: 10 },
-  { mq: '768px', columns: 3, gutter: 25 },
-  { mq: '1024px', columns: 4, gutter: 50 }
-]
 
 const MainView = props => {
   if (!props.articles) {
@@ -84,7 +24,7 @@ const MainView = props => {
       <div className="cont-list">Loading...</div>
     );
   }
-  if (props.articles.length == 0) {
+  if (props.articles.length === 0) {
     return (
       <div className="container result-nodata">
         <div className="inner">
@@ -142,7 +82,7 @@ const MainView = props => {
             window.clickBlock = false;
           };
           return (
-            <Link to={''} className="img-cell" onClick={handleClick}>
+            <Link to={''} className="img-cell" onClick={handleClick} key={index}>
               <figure>
                 <img src={article._source.image} alt="" />
                 <figcaption></figcaption>

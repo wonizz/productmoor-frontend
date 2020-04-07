@@ -47,19 +47,19 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, vendor) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=1&q=product_title:${id} and vendor:${vendor}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&q=product_title:${id} and vendor:${vendor}`),
   byTitleOnline: (id, vendor) =>
     requests.set(`http://52.78.116.176:9200/onlineshop-*/_search?pretty&size=10&q=product_title:${id} and vendor:${vendor}`),
   byTitleRelated: (id, page) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category:${id}`),
   byTitleRelatedMore: (id, from) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30&from=${from}&q=category:${id}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&from=${from}&q=category:${id}`),
   byCategory: (id, page) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=30&q=category_addtional:${id}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&q=category_addtional:${id}`),
   onLoadMore: (size, from) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}`),
   onLoadMoreByCategory: (size, from, id) =>
@@ -67,23 +67,7 @@ const Articles = {
   bySearchKeword: (size, keyword) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&q=${keyword}`),
   onLoadbySearchKeword: (size, from, keyword) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=${keyword}`),
-  del: slug =>
-    requests.del(`/articles/${slug}`),
-  favorite: slug =>
-    requests.post(`/articles/${slug}/favorite`),
-  favoritedBy: (author, page) =>
-    requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
-  feed: () =>
-    requests.get('/articles/feed?limit=10&offset=0'),
-  get: slug =>
-    requests.get(`/articles/${slug}`),
-  unfavorite: slug =>
-    requests.del(`/articles/${slug}/favorite`),
-  update: article =>
-    requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }),
-  create: article =>
-    requests.post('/articles', { article })
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=${keyword}`)
 };
 
 const Comments = {

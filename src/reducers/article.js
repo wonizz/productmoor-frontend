@@ -11,9 +11,9 @@ export default (state = {}, action) => {
     case ARTICLE_PAGE_LOADED:
       return {
         ...state,
-        detail: action.payload[0].hits.hits.length != 0 ? action.payload[0].hits.hits[0]._source : "",
-        online: action.payload[1].hits.hits.length != 0 ? action.payload[1].hits.hits : "",
-        related: action.payload[2].hits.hits.length != 0 ? action.payload[2].hits.hits : "",
+        detail: action.payload[0].hits.hits.length !== 0 ? action.payload[0].hits.hits[0]._source : "",
+        online: action.payload[1].hits.hits.length !== 0 ? action.payload[1].hits.hits : "",
+        related: action.payload[2].hits.hits.length !== 0 ? action.payload[2].hits.hits : "",
         size: 10,
         from: 10
         //comments: action.payload[1].comments
@@ -21,7 +21,7 @@ export default (state = {}, action) => {
     case ARTICLE_PAGE_LOADED_MORE:
       return {
         ...state,
-        related:state.related.concat(action.payload.hits.hits), 
+        related: state.related.concat(action.payload.hits.hits),
         size: 10,
         from: state.from + 10
       }
@@ -34,7 +34,7 @@ export default (state = {}, action) => {
         comments: action.error ?
           null :
           (state.comments || []).concat([action.payload.comment]),
-        detail : ''
+        detail: ''
       };
     case DELETE_COMMENT:
       const commentId = action.commentId

@@ -10,7 +10,7 @@ const Banner = ({ category, appName, onClickCategory, onDetailUnLoad }) => {
     <div className="menu-swiper swiper-container">
       <nav className="menu-moor swiper=wrapper">
         {
-          category.category.map(category => {
+          category.category.map((category, index) => {
             const handleClick = ev => {
               ev.preventDefault();
               onClickCategory('', '', agent.Articles.byCategory(category));
@@ -20,9 +20,10 @@ const Banner = ({ category, appName, onClickCategory, onDetailUnLoad }) => {
             };
             return (
               <a
-                href="#"
+                href="/#"
                 className="btn-nav swiper-slide"
                 onClick={handleClick}
+                key={index}
               >{category}
               </a>
             )

@@ -1,7 +1,7 @@
 import React from 'react';
-import agent from '../../agent';
+
 import { connect } from 'react-redux';
-import { ARTICLE_PAGE_LOADED, ARTICLE_PAGE_UNLOADED, APP_UNLOAD, APP_REDIRECT } from '../../constants/actionTypes';
+import { APP_UNLOAD, APP_REDIRECT } from '../../constants/actionTypes';
 
 const mapStateToProps = state => ({
   ...state.common.redirecturl
@@ -25,13 +25,6 @@ class Redirect extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(
-      function () {
-        //window.location.href = "https://www.samsung.com/sg"
-      }
-        .bind(this),
-      3000
-    );
     console.log('didmount')
   }
   render() {
