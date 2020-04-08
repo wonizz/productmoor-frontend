@@ -47,27 +47,27 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20`),
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchmain?page=1&size=30&category=&vendor=`),
   byAuthor: (author, page) =>
     requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
   byTitle: (id, vendor) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&q=product_title:${id} and vendor:${vendor}`),
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchdetail?product_title=${id}&vendor=${vendor}`),
   byTitleOnline: (id, vendor) =>
-    requests.set(`http://52.78.116.176:9200/onlineshop-*/_search?pretty&size=10&q=product_title:${id} and vendor:${vendor}`),
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchdetailshop?product_title=${id}&vendor=${vendor}`),
   byTitleRelated: (id, page) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&q=category:${id}`),
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchdetailrelated?category=${id}`),  
   byTitleRelatedMore: (id, from) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&from=${from}&q=category:${id}`),
+    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&from=${from}&q=category:${id}`),  
   byCategory: (id, page) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=20&q=category_addtional:${id}`),
-  onLoadMore: (size, from) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}`),
-  onLoadMoreByCategory: (size, from, id) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=category_addtional:${id}`),
-  bySearchKeword: (size, keyword) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&q=${keyword}`),
-  onLoadbySearchKeword: (size, from, keyword) =>
-    requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=${size}&from=${from}&q=${keyword}`)
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchmain?page=1&size=30&category=${id}&vendor=`),
+  onLoadMore: (size, page) =>
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchmain?page=${page}&size=${size}&category=&vendor=`),
+  onLoadMoreByCategory: (size, page, id) =>
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchmain?page=${page}&size=${size}&category=${id}&vendor=`),
+  bySearchKeword: (size, page, keyword) =>
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchresult?page=${page}&size=${size}&keyword=${keyword}`),
+  onLoadbySearchKeword: (size, page, keyword) =>
+    requests.set(`https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com/searchresult?page=${page}&size=${size}&keyword=${keyword}`)
 };
 
 const Comments = {

@@ -91,6 +91,10 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                             </div>
                         </div>
                     </div>
+                    {
+                        `${online}` !== ""
+                        ? (
+                                  
                     <div className="detail-dealer">
                         <h3 className="stit-detail">Online Shop</h3>
                         <div className="swiper-container">
@@ -122,6 +126,11 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                             </div>
                         </div>
                     </div>
+                        )                    
+                        : (
+                        <div className="detail-dealer"></div>
+                        )
+                    }
                     <div className="detail-related">
                         <h3 className="stit-detail">Related</h3>
                         <Masonry

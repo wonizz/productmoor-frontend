@@ -5,14 +5,14 @@ const LoggedOutView = ({ props, onSearchLoad, onDetailUnLoad }) => {
   if (true) {
     const clickHandler = ev => {
       window.category = undefined;
-      onSearchLoad(window.searchKeyword, agent.Articles.bySearchKeword(20, window.searchKeyword));
+      onSearchLoad(window.searchKeyword, agent.Articles.bySearchKeword(30, 1, window.searchKeyword));
       onDetailUnLoad();
     }
     const keyHandler = ev => {
       window.searchKeyword = ev.target.value;
       if (ev.key === 'Enter') {
         window.category = undefined;
-        onSearchLoad(ev.target.value, agent.Articles.bySearchKeword(20, ev.target.value));
+        onSearchLoad(ev.target.value, agent.Articles.bySearchKeword(30, 1, ev.target.value));
         onDetailUnLoad();
       }
     }
