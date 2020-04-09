@@ -1,7 +1,7 @@
-import Banner from './Banner';
+import Gnb from './Gnb';
 import MainView from './MainView';
 import React from 'react';
-import Tags from './Tags';
+import Detail from './Detail';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 
@@ -120,7 +120,7 @@ class Home extends React.Component {
           {
             this.props.articleList.articles.length !== 0 ?
               (<div className="head-cont">
-                <Banner
+                <Gnb
                   onDetailUnLoad={this.props.onDetailUnLoad}
                   onClickCategory={this.props.onLoad}
                   category={this.props.category}
@@ -151,7 +151,7 @@ class Home extends React.Component {
               onDetailUnLoad={this.props.onDetailUnLoad}
               onClickCategory={this.props.onLoad}
             />
-            <Tags
+            <Detail
               onClickDetail={this.props.onDetailLoad}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onRelatedLoadMore={this.props.onRelatedLoadMore}
