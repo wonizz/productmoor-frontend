@@ -1285,6 +1285,9 @@ ol {
     body {
         font-size: 10px;
     }
+    body.lock-scroll {
+        overflow: hidden;
+    }
     img {
         width: 100%;
     }

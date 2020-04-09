@@ -80,6 +80,7 @@ const MainView = props => {
             ev.preventDefault();
             props.onClickDetail(Promise.all([agent.Articles.byTitle(article._source.product_title, article._source.vendor), agent.Articles.byTitleOnline(article._source.product_title, article._source.vendor), agent.Articles.byTitleRelated(article._source.category)]));
             window.clickBlock = false;
+            window.bodyScrollLock();
           };
           return (
             <Link to={''} className="img-cell" onClick={handleClick} key={index}>

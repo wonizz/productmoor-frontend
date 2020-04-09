@@ -12,6 +12,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
             if (ev.target !== ev.currentTarget) return;
             onDetailUnLoad();
             window.clickBlock = false;
+            window.bodyScrollUnlock();
         };
         /*const handleClickRelatedMore = ev => {
             ev.preventDefault();
