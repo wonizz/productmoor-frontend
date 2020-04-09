@@ -124,6 +124,9 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                 }
 
                             </div>
+                            <div className="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <span className="slider__label sr-only"/>
+                            </div>
                         </div>
                     </div>
                         )                    
