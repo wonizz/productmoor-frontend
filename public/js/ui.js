@@ -74,9 +74,9 @@ function searchAction() {
 }
 
 function bodyScrollLock() {
-  $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  $('html > body').css({'overflow': 'hidden', 'height': '100%'});
 }
 
 function bodyScrollUnlock() {
-  $('html, body').removeAttr('style')
+  $('html > body').removeAttr('style')
 }
