@@ -3,6 +3,8 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import store from './store';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 
 import App from './components/App';
 import Article from './components/Article';

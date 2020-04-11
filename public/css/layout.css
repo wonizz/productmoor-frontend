@@ -494,7 +494,7 @@ ol {
     width: 555px;
     border-left: 1px solid #d0d0d0;
     background: #ffffff;
-    margin: auto;
+    margin: auto 0;
     height: 80vh;
 }
 .btn-close-detail {
