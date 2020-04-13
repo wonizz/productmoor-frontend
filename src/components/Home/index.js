@@ -33,6 +33,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
   onRelatedLoadMore: (payload) =>
     dispatch({ type: ARTICLE_PAGE_LOADED_MORE, payload }),
+  onPrivacyTermsLoad: (pageName, payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, pageName, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onLoadMore: (payload, searchKeyword) =>
@@ -150,6 +152,7 @@ class Home extends React.Component {
               category={this.props.category}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onClickCategory={this.props.onLoad}
+              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
             />
             <Detail
               onClickDetail={this.props.onDetailLoad}

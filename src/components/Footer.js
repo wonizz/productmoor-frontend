@@ -4,14 +4,24 @@ import React from 'react';
 
 class Footer extends React.Component {
     render() {
+        const privacyKeyHandler = ev => {
+            ev.preventDefault();
+            window.category = undefined;
+            this.props.onPrivacyTermsLoad('terms-privacy', { hits: { hits: [] } });
+        }
+        const serviceKeyHandler = ev => {
+            ev.preventDefault();
+            window.category = undefined;
+            this.props.onPrivacyTermsLoad('terms-service', { hits: { hits: [] } });
+        }
         return (
             <footer className="footer">
                 <div className="inner">
                     <div className="head-footer">
                         <h2 className="stit-footer">PRODUCTMOOR</h2>
                         <nav className="nav-footer">
-                            <a href="/#/redirect/terms-service">TERMS OF USE</a>
-                            <a href="/#/redirect/terms-privacy">PRIVACY POLICY</a>
+                            <a href="/#" onClick={serviceKeyHandler}>TERMS OF USE</a>
+                            <a href="/#" onClick={privacyKeyHandler}>PRIVACY POLICY</a>
                         </nav>
                     </div>
                     <div className="cont-footer">

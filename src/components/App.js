@@ -19,6 +19,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
   onSearchLoad: (searchKeyword, payload) =>
     dispatch({ type: HOME_PAGE_LOADED, searchKeyword, payload }),
+  onPrivacyTermsLoad: (pageName, payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, pageName, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onRedirect: () =>
@@ -64,7 +66,9 @@ class App extends React.Component {
               onDetailUnLoad={this.props.onDetailUnLoad}
             />
             {this.props.children}
-            <Footer />
+            <Footer
+              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
+            />
           </div>
         </div>
       );
