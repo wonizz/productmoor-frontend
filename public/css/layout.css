@@ -91,7 +91,7 @@ ol {
     height: 40px;
     transition: width 0.15s;
 }
-.box-search.active .text, 
+.box-search.active .text,
 .box-search .text:focus {
     padding: 0 40px 0 20px;
     width: 400px;
@@ -226,7 +226,7 @@ ol {
     height: 14px;
     opacity: 0.7;
     background-repeat: no-repeat;
-    background-position: center center; 
+    background-position: center center;
     background-size: contain;
 }
 .menu-swiper .slick-arrow.slick-disabled {
@@ -483,7 +483,7 @@ ol {
     top: 0;
     background: rgba(0,0,0,0.45);
     z-index: 99;
-    
+
 }
 .cont-detail .detail-inner {
     overflow: hidden;
@@ -686,7 +686,7 @@ ol {
     margin: 15px 0 0;
 }
 .spec-accr li strong {
-    margin: 0 0 10px; 
+    margin: 0 0 10px;
     font-size: 12px;
     font-weight: bold;
 }
@@ -726,6 +726,10 @@ ol {
     position: relative;
     margin: 18px 0 0;
 }
+.detail-dealer .slick-track {
+    min-width: 520px;
+}
+
 .detail-dealer .swiper-slide {
     overflow: hidden;
     margin: 0 10px;
@@ -799,12 +803,12 @@ ol {
     height: 3px;
     border-radius: 3px;
     overflow: hidden;
-    
+
     background-color: #dddddd;
     background-image: linear-gradient(to right, #9e9e9e, #9e9e9e);
     background-repeat: no-repeat;
     background-size: 0 100%;
-    
+
     transition: background-size .4s ease-in-out;
 }
 .detail-dealer .sr-only {
@@ -1044,7 +1048,7 @@ ol {
     width: 1px;
     height: 16px;
     margin: auto;
-    background: rgba(0,0,0,0.9);   
+    background: rgba(0,0,0,0.9);
 }
 .popHead .btn-close:before {
     transform: rotate(45deg);
@@ -1281,7 +1285,7 @@ ol {
 /* mobile */
 @media screen and (max-width: 767px) {
     /* common */
-    html, 
+    html,
     body {
         font-size: 10px;
     }
@@ -1619,6 +1623,9 @@ ol {
     .detail-dealer .swiper-container {
         margin: 4.348vw 0 0;
     }
+    .detail-dealer .slick-track {
+        min-width: 98.75vw;
+    }
     .detail-dealer .swiper-slide {
         margin: 0 1.208vw;
         width: 33.816vw;
@@ -1633,14 +1640,14 @@ ol {
     .info-deal dd:first-of-type {
         margin: 2.899vw 0 0;
     }
-    .detail-dealer .slick-prev, 
+    .detail-dealer .slick-prev,
     .detail-dealer .slick-next {
         top: 16.908vw;
         width: 7.246vw;
         height: 7.246vw;
         z-index: 10;
     }
-    .detail-dealer .slick-prev:after, 
+    .detail-dealer .slick-prev:after,
     .detail-dealer .slick-next:after {
         width: 3.623vw;
         height: 3.623vw;
@@ -1793,7 +1800,7 @@ ol {
     }
     .txt-share dd {
         margin: 1.208vw 0 0;
-        font-size: 1.1rem;      
+        font-size: 1.1rem;
     }
     .txt-share dd a {
         display: block;
