@@ -56,6 +56,14 @@ class Home extends React.Component {
       const { innerHeight } = window;
       const { scrollHeight } = document.body;
 
+      /*
+        1. Privacy & temrs 컴포넌트에서는 scroll 사용 안함.
+        2. no search result page 에서는 scroll 사용 안함.
+      */
+      if ("terms".indexOf(this.props.articleList.pageName) !== -1 || this.props.articleList.articles.length === 0) {
+        return false;
+      }
+      
       // IE에서는 document.documentElement 를 사용.
       const scrollTop =
         (document.documentElement && document.documentElement.scrollTop) ||
