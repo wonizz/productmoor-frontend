@@ -108,7 +108,7 @@ const MainView = props => {
           <div className="search-recomm">
             <ul>
               {
-                props.category.category.map(category => {
+                props.category.category.map((category, index) => {
                   const handleClick = ev => {
                     ev.preventDefault();
                     props.onClickCategory('', '', agent.Articles.byCategory(category));
@@ -117,7 +117,7 @@ const MainView = props => {
                     window.number = 1;
                   };
                   return (
-                    <li>
+                    <li key={index}>
                       <button type="button" className="btn-search" onClick={handleClick}>{category}</button>
                     </li>
                   )
