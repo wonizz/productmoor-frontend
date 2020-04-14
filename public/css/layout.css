@@ -95,7 +95,7 @@ ol {
 .box-search .text:focus {
     padding: 0 40px 0 20px;
     width: 400px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #d2d2d2;
 }
 .box-search .btn-search-del {
     display: none;
@@ -224,7 +224,7 @@ ol {
     margin: auto;
     width: 14px;
     height: 14px;
-    opacity: 0.7;
+    opacity: 0.5;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
@@ -343,7 +343,7 @@ ol {
     align-items: center;
     padding: 0 0 0 35px;
     height: 26px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 26px;
     background: #ffffff;
@@ -496,6 +496,7 @@ ol {
     background: #ffffff;
     margin: auto 0;
     height: 80vh;
+    border-radius: 10px;
 }
 .btn-close-detail {
     position: absolute;
@@ -510,13 +511,13 @@ ol {
     content: '';
     position: absolute;
     width: 1px;
-    height: 20px;
+    height: 16px;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.4);
 }
 
 .btn-close-detail:before {
@@ -747,6 +748,7 @@ ol {
     font-size: 0;
     line-height: 0;
     width: 100%;
+    height: 150px;
 }
 .detail-dealer .slick-arrow {
     display: none !important;
@@ -1324,21 +1326,21 @@ ol {
         margin: 0 0 0 3.623vw;
     }
     .cell-util .btn-util {
-        width: 4.831vw;
-        height: 4.831vw;
+        width: 3.331vw;
+        height: 3.331vw;
         background: transparent;
         box-shadow: none;
     }
     .cell-util .btn-util:after {
-        width: 4.831vw;
-        height: 4.831vw;
+        width: 3.331vw;
+        height: 3.331vw;
     }
     .cell-util.myaccount {
         display: none;
     }
     .box-search .text {
-        width: 4.831vw;
-        height: 4.831vw;
+        width: 3.331vw;
+        height: 3.331vw;
         box-shadow: none;
     }
     .box-menu {
@@ -1465,7 +1467,8 @@ ol {
     .addon.related .txt-addon em {
         overflow: hidden;
         display: block;
-        width: calc(100% - 2.415vw);
+        /*width: calc(100% - 2.415vw);*/
+        width: calc(100%);
         text-overflow: ellipsis;
         white-space: nowrap;
     }
@@ -1481,13 +1484,13 @@ ol {
     .addon.related.addon-keyword .txt-addon {
         padding: 0 4.831vw;
         width: auto;
-        height: 12.077vw;
-        border-radius: 12.077vw;
+        height: 6.077vw;
+        border-radius: 6.077vw;
         font-size: 1.6rem;
     }
     .addon.related.addon-keyword .btn-del {
-        width: 7.426vw;
-        height: 7.426vw;
+        width: 2.426vw;
+        height: 2.426vw;
     }
     .addon.related.addon-keyword .btn-del:after {
         width: 2.415vw;
@@ -1845,7 +1848,7 @@ ol {
         padding: 0;
         height: 4.841vw;
         width: 0;
-        font-size: 2.123vw;
+        font-size: 3.123vw;
         background: none;
         border-radius: 0;
     }
