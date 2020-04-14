@@ -58,7 +58,8 @@ export default (state = {}, action) => {
         tab: action.tab,
         size: 10,
         from: 0,
-        searchKeyword: action.searchKeyword
+        searchKeyword: action.searchKeyword,
+        pageName: action.pageName
       };
     case HOME_PAGE_LOADED_MORE:
       return {

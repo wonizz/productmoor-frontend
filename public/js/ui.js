@@ -72,3 +72,11 @@ function searchAction() {
     this.text == window.category ? $(this).addClass('active') : ""
   });
 }
+
+function bodyScrollLock() {
+  $('html > body').css({'overflow': 'hidden', 'height': '100%'});
+}
+
+function bodyScrollUnlock() {
+  $('html > body').removeAttr('style')
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import agent from '../../agent';
 import Masonry from 'react-masonry-component';
 
-const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore }) => {
+const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore }) => {
     if (detail) {
         let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png";
         window.category = detail.category;
@@ -12,6 +12,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
             if (ev.target !== ev.currentTarget) return;
             onDetailUnLoad();
             window.clickBlock = false;
+            window.bodyScrollUnlock();
         };
         /*const handleClickRelatedMore = ev => {
             ev.preventDefault();
@@ -93,43 +94,46 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                     </div>
                     {
                         `${online}` !== ""
-                        ? (
-                                  
-                    <div className="detail-dealer">
-                        <h3 className="stit-detail">Online Shop</h3>
-                        <div className="swiper-container">
-                            <div className="swiper-wrapper">
-                                {
-                                    online.map((online_detail, index) => {
-                                        let online_detail_info = online_detail._source;
-                                        let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
-                                        return (
-                                            <figure className="swiper-slide slide-detail">
-                                                <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
-                                                    <img src={online_detail_info.image} alt={`${online_detail_info.title}`} />
-                                                </a>
-                                                <figcaption>
-                                                    <dl className="info-deal">
-                                                        <dt>
-                                                            <img src={shop_logo} alt={`${online_detail_info.shop}`} />
-                                                        </dt>
-                                                        <dd>{online_detail_info.brand}</dd>
-                                                        <dd>{online_detail_info.title}</dd>
-                                                        <dd>{online_detail_info.price} {online_detail_info.currencyunit}</dd>
-                                                    </dl>
-                                                </figcaption>
-                                            </figure>
-                                        )
-                                    })
-                                }
+                            ? (
 
-                            </div>
-                        </div>
-                    </div>
-                        )                    
-                        : (
-                        <div className="detail-dealer"></div>
-                        )
+                                <div className="detail-dealer">
+                                    <h3 className="stit-detail">Online Shop</h3>
+                                    <div className="swiper-container">
+                                        <div className="swiper-wrapper">
+                                            {
+                                                online.map((online_detail, index) => {
+                                                    let online_detail_info = online_detail._source;
+                                                    let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
+                                                    return (
+                                                        <figure className="swiper-slide slide-detail" key={index}>
+                                                            <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
+                                                                <img src={online_detail_info.image} alt={`${online_detail_info.title}`} />
+                                                            </a>
+                                                            <figcaption>
+                                                                <dl className="info-deal">
+                                                                    <dt>
+                                                                        <img src={shop_logo} alt={`${online_detail_info.shop}`} />
+                                                                    </dt>
+                                                                    <dd>{online_detail_info.brand}</dd>
+                                                                    <dd>{online_detail_info.title}</dd>
+                                                                    <dd>{online_detail_info.price} {online_detail_info.currencyunit}</dd>
+                                                                </dl>
+                                                            </figcaption>
+                                                        </figure>
+                                                    )
+                                                })
+                                            }
+
+                                        </div>
+                                        <div className="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                            <span className="slider__label sr-only" />
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                            : (
+                                <div className="detail-dealer"></div>
+                            )
                     }
                     <div className="detail-related">
                         <h3 className="stit-detail">Related</h3>
@@ -148,7 +152,7 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
                                         window.clickBlock = false;
                                     };
                                     return (
-                                        <a href="/#" className="img-cell" onClick={handleClick}>
+                                        <a href="/#" className="img-cell" onClick={handleClick} key={index}>
                                             <img src={related_detail_info.image} alt="" />
                                         </a>
                                     )
@@ -167,4 +171,4 @@ const Tags = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDet
     }
 };
 
-export default Tags;
+export default Detail;

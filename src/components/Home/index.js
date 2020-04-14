@@ -1,7 +1,7 @@
-import Banner from './Banner';
+import Gnb from './Gnb';
 import MainView from './MainView';
 import React from 'react';
-import Tags from './Tags';
+import Detail from './Detail';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 
@@ -33,6 +33,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
   onRelatedLoadMore: (payload) =>
     dispatch({ type: ARTICLE_PAGE_LOADED_MORE, payload }),
+  onPrivacyTermsLoad: (pageName, payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, pageName, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onLoadMore: (payload, searchKeyword) =>
@@ -54,6 +56,14 @@ class Home extends React.Component {
       const { innerHeight } = window;
       const { scrollHeight } = document.body;
 
+      /*
+        1. Privacy & temrs 컴포넌트에서는 scroll 사용 안함.
+        2. no search result page 에서는 scroll 사용 안함.
+      */
+      if ("terms".indexOf(this.props.articleList.pageName) !== -1 || this.props.articleList.articles.length === 0) {
+        return false;
+      }
+      
       // IE에서는 document.documentElement 를 사용.
       const scrollTop =
         (document.documentElement && document.documentElement.scrollTop) ||
@@ -120,7 +130,7 @@ class Home extends React.Component {
           {
             this.props.articleList.articles.length !== 0 ?
               (<div className="head-cont">
-                <Banner
+                <Gnb
                   onDetailUnLoad={this.props.onDetailUnLoad}
                   onClickCategory={this.props.onLoad}
                   category={this.props.category}
@@ -150,8 +160,9 @@ class Home extends React.Component {
               category={this.props.category}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onClickCategory={this.props.onLoad}
+              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
             />
-            <Tags
+            <Detail
               onClickDetail={this.props.onDetailLoad}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onRelatedLoadMore={this.props.onRelatedLoadMore}

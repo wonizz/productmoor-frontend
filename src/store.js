@@ -6,7 +6,7 @@ import reducer from './reducer';
 
 const getMiddleware = () => {
   // process.env.NODE_ENV === 'production'
-  if (false) {
+  if (process.env.NODE_ENV) {
     return applyMiddleware(promiseMiddleware, localStorageMiddleware);
   } else {
     // Enable additional logging in non-production environments.
