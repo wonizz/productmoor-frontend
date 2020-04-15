@@ -1,7 +1,9 @@
 import Gnb from './Gnb';
 import MainView from './MainView';
-import React from 'react';
 import Detail from './Detail';
+import Privacy from './Privacy';
+import NoResult from './NoResult';
+import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 
@@ -160,7 +162,6 @@ class Home extends React.Component {
               category={this.props.category}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onClickCategory={this.props.onLoad}
-              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
             />
             <Detail
               onClickDetail={this.props.onDetailLoad}
@@ -171,17 +172,19 @@ class Home extends React.Component {
               related={this.props.related}
               relatedFrom={this.props.from}
             />
-            {/* <div classNameName="col-md-3">
-                      <div classNameName="sidebar">
-
-                        <p>Popular Tags</p>
-
-                        <Tags
-                          tags={this.props.tags}
-                          onClickTag={this.props.onClickTag} />
-
-                      </div>
-                    </div> */}
+            <Privacy
+              pageName={this.props.articleList.pageName}
+              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
+            />
+            <NoResult
+              pageName={this.props.articleList.pageName}  
+              category={this.props.category}
+              onDetailUnLoad={this.props.onDetailUnLoad}
+              onClickCategory={this.props.onLoad}
+              articleLength={this.props.articleList.articles.length}
+              searchKeyword={this.props.searchKeyword}
+            />
+            
 
           </div>
         </div>
