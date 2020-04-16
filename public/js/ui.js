@@ -23,7 +23,7 @@ function slickDetail() {
   var $progressBarLabel = $('.detail-dealer .slider__label');
 
   $slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-    var calc = ((nextSlide) / (slick.slideCount - 1)) * 100;
+    var calc = ((nextSlide) / (slick.slideCount - 3)) * 100;
 
     $progressBar
       .css('background-size', calc + '% 100%')
@@ -34,7 +34,7 @@ function slickDetail() {
 
   $slider.slick({
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     speed: 600,
     touchMove: false,
     swipe: true
@@ -45,6 +45,7 @@ function slickFilter() {
   if($('.slick-next').length == 0){
     $('.menu-moor').not('.slick-initialized').slick({
       slideToShow: 9,
+      slidesToScroll: 3,
       infinite: false,
       variableWidth: true
     })

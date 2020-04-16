@@ -404,7 +404,7 @@ ol {
     bottom: 0;
     left: 0;
     right: 0;
-    border: 1px solid #858585;
+    /*border: 1px solid #858585;*/
     transition: opacity 0.5s;
     opacity: 0;
 }
