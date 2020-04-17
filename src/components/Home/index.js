@@ -1,21 +1,22 @@
-import Banner from './Banner';
+import Gnb from './Gnb';
 import MainView from './MainView';
+import Detail from './Detail';
+import Privacy from './Privacy';
+import NoResult from './NoResult';
 import React from 'react';
-import Tags from './Tags';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import Masonry from 'react-masonry-component';
+
 
 import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
-  APPLY_TAG_FILTER,
   ARTICLE_PAGE_LOADED,
   ARTICLE_PAGE_UNLOADED,
   ARTICLE_PAGE_LOADED_MORE,
   HOME_PAGE_LOADED_MORE
 } from '../../constants/actionTypes';
-import Footer from '../Footer';
+
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -34,6 +35,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
   onRelatedLoadMore: (payload) =>
     dispatch({ type: ARTICLE_PAGE_LOADED_MORE, payload }),
+  onPrivacyTermsLoad: (pageName, payload) =>
+    dispatch({ type: HOME_PAGE_LOADED, pageName, payload }),
   onDetailUnLoad: () =>
     dispatch({ type: ARTICLE_PAGE_UNLOADED }),
   onLoadMore: (payload, searchKeyword) =>
@@ -43,10 +46,6 @@ const mapDispatchToProps = dispatch => ({
   onUnload: () =>
     dispatch({ type: HOME_PAGE_UNLOADED })
 });
-const masonryOptions = {
-  transitionDuration: 0
-};
-const imagesLoadedOptions = { background: '.my-bg-image-el' }
 
 class Home extends React.Component {
   componentWillMount() {
@@ -59,6 +58,14 @@ class Home extends React.Component {
       const { innerHeight } = window;
       const { scrollHeight } = document.body;
 
+      /*
+        1. Privacy & temrs 컴포넌트에서는 scroll 사용 안함.
+        2. no search result page 에서는 scroll 사용 안함.
+      */
+      if ("terms".indexOf(this.props.articleList.pageName) !== -1 || this.props.articleList.articles.length === 0) {
+        return false;
+      }
+      
       // IE에서는 document.documentElement 를 사용.
       const scrollTop =
         (document.documentElement && document.documentElement.scrollTop) ||
@@ -72,14 +79,14 @@ class Home extends React.Component {
           1-1. searchKeyword 정보가 없으면, 일반 loadmore
           1-2. searchKeyword 정보가 있으면, bysearchKeyword loadmore
         */
-        if (window.category == undefined) {
-          if (this.props.searchKeyword == undefined) {
-            this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
+        if (window.category === undefined) {
+          if (this.props.searchKeyword === undefined) {
+            this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
           } else {
-            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, (window.number - 1) * 30, this.props.searchKeyword), this.props.searchKeyword)
+            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, window.number, this.props.searchKeyword), this.props.searchKeyword)
           }
         } else {
-          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number - 1) * 30, window.category))
+          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, window.number, window.category))
         }
       }
     };
@@ -104,6 +111,7 @@ class Home extends React.Component {
     window.searchAction();
     window.activeMenu();
     window.goTop();
+    window.slickFilter();
     window.slickDetail();
     console.log('didupdate')
   }
@@ -111,7 +119,7 @@ class Home extends React.Component {
   render() {
     const clickHandler = ev => {
       ev.preventDefault();
-      this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number - 1) * 30))
+      this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
     };
     if (!this.props.articleList.articles) {
       return (
@@ -124,7 +132,7 @@ class Home extends React.Component {
           {
             this.props.articleList.articles.length !== 0 ?
               (<div className="head-cont">
-                <Banner
+                <Gnb
                   onDetailUnLoad={this.props.onDetailUnLoad}
                   onClickCategory={this.props.onLoad}
                   category={this.props.category}
@@ -155,7 +163,7 @@ class Home extends React.Component {
               onDetailUnLoad={this.props.onDetailUnLoad}
               onClickCategory={this.props.onLoad}
             />
-            <Tags
+            <Detail
               onClickDetail={this.props.onDetailLoad}
               onDetailUnLoad={this.props.onDetailUnLoad}
               onRelatedLoadMore={this.props.onRelatedLoadMore}
@@ -164,17 +172,19 @@ class Home extends React.Component {
               related={this.props.related}
               relatedFrom={this.props.from}
             />
-            {/* <div classNameName="col-md-3">
-                      <div classNameName="sidebar">
-
-                        <p>Popular Tags</p>
-
-                        <Tags
-                          tags={this.props.tags}
-                          onClickTag={this.props.onClickTag} />
-
-                      </div>
-                    </div> */}
+            <Privacy
+              pageName={this.props.articleList.pageName}
+              onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
+            />
+            <NoResult
+              pageName={this.props.articleList.pageName}  
+              category={this.props.category}
+              onDetailUnLoad={this.props.onDetailUnLoad}
+              onClickCategory={this.props.onLoad}
+              articleLength={this.props.articleList.articles.length}
+              searchKeyword={this.props.searchKeyword}
+            />
+            
 
           </div>
         </div>

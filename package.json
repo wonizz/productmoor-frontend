@@ -1,6 +1,6 @@
 {
-  "name": "react-redux-realworld",
-  "version": "0.0.0",
+  "name": "product-moor",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "marked": "^0.8.0",
@@ -37,7 +37,8 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie 11"
     ]
   }
 }

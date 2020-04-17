@@ -1,63 +1,10 @@
-import ArticleList from '../ArticleList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import Masonry from 'react-masonry-component';
-import InfiniteScroll from "react-infinite-scroll-component";
-import MasonryInfiniteScroller from 'react-masonry-infinite';
 import { Link } from 'react-router';
 
-const YourFeedTab = props => {
-  if (props.token) {
-    const clickHandler = ev => {
-      ev.preventDefault();
-      props.onTabClick('feed', agent.Articles.feed, agent.Articles.feed());
-    }
-
-    return (
-      <li classNameName="nav-item">
-        <a href="#"
-          classNameName={props.tab === 'feed' ? 'nav-link active' : 'nav-link'}
-          onClick={clickHandler}>
-          Your Feed
-        </a>
-      </li>
-    );
-  }
-  return null;
-};
-
-const GlobalFeedTab = props => {
-  const clickHandler = ev => {
-    ev.preventDefault();
-    props.onTabClick('all', agent.Articles.all, agent.Articles.all());
-  };
-  return (
-    <li classNameName="nav-item">
-      <a
-        href=""
-        classNameName={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
-        onClick={clickHandler}>
-        Global Feed
-      </a>
-    </li>
-  );
-};
-
-const TagFilterTab = props => {
-  if (!props.tag) {
-    return null;
-  }
-
-  return (
-    <li classNameName="nav-item">
-      <a href="" classNameName="nav-link active">
-        <i classNameName="ion-pound"></i> {props.tag}
-      </a>
-    </li>
-  );
-};
 
 const mapStateToProps = state => ({
   ...state.articleList,
@@ -70,13 +17,6 @@ const mapDispatchToProps = dispatch => ({
   onTabClick: (tab, pager, payload) => dispatch({ type: CHANGE_TAB, tab, pager, payload })
 });
 
-window.localStorage.setItem('size', 10);
-window.localStorage.setItem('from', 10);
-const sizes = [
-  { columns: 2, gutter: 10 },
-  { mq: '768px', columns: 3, gutter: 25 },
-  { mq: '1024px', columns: 4, gutter: 50 }
-]
 
 const MainView = props => {
   if (!props.articles) {
@@ -84,38 +24,8 @@ const MainView = props => {
       <div className="cont-list">Loading...</div>
     );
   }
-  if (props.articles.length == 0) {
-    return (
-      <div className="container result-nodata">
-        <div className="inner">
-          <p className="txt-nodata">죄송합니다.
-          “{props.searchKeyword}”에 대한 검색 결과를 찾지 못했습니다.
-  아래 내용 중 하나를 선택해 보시겠어요?</p>
-          <div className="search-recomm">
-            <ul>
-              {
-                props.category.category.map(category => {
-                  const handleClick = ev => {
-                    ev.preventDefault();
-                    props.onClickCategory('', '', agent.Articles.byCategory(category));
-                    props.onDetailUnLoad();
-                    window.category = category;
-                    window.number = 1;
-                  };
-                  return (
-                    <li>
-                      <button type="button" className="btn-search" onClick={handleClick}>{category}</button>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+  
+  if(props.articles.length !== 0){
   return (
     // <InfiniteScroll
     // dataLength={props.articles.length}
@@ -130,19 +40,16 @@ const MainView = props => {
       disableImagesLoaded={false} // default false
       updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
     >
-
-
-
-
       {
         props.articles.map((article, index) => {
           const handleClick = ev => {
             ev.preventDefault();
             props.onClickDetail(Promise.all([agent.Articles.byTitle(article._source.product_title, article._source.vendor), agent.Articles.byTitleOnline(article._source.product_title, article._source.vendor), agent.Articles.byTitleRelated(article._source.category)]));
             window.clickBlock = false;
+            window.bodyScrollLock();
           };
           return (
-            <Link to={''} className="img-cell" onClick={handleClick}>
+            <Link to={''} className="img-cell" onClick={handleClick} key={index}>
               <figure>
                 <img src={article._source.image} alt="" />
                 <figcaption></figcaption>
@@ -154,9 +61,10 @@ const MainView = props => {
 
     </Masonry>
     //  </InfiniteScroll>
-
-
-  );
+    );
+  }else{
+    return false;
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);
