@@ -141,7 +141,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                             className={'detail-list'} // default ''
                             elementType={'div'} // default 'div'
                             disableImagesLoaded={false} // default false
-                            updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+                            updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
                         >
                             {
                                 related.map((related_detail, index) => {
@@ -153,7 +153,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                     };
                                     return (
                                         <a href="/#" className="img-cell" onClick={handleClick} key={index}>
-                                            <img src={related_detail_info.image} alt="" />
+                                            <img src={related_detail_info.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=180&f=webp&q=90")} alt="" />
                                         </a>
                                     )
                                 })

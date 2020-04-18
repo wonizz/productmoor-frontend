@@ -58,8 +58,8 @@ const Articles = {
     requests.set(`/searchdetailrelated?category=${id}`),
   byTitleRelatedMore: (id, from) =>
     requests.set(`http://52.78.116.176:9200/brandshop-*/_search?pretty&size=10&from=${from}&q=category:${id}`),
-  byCategory: (id, page) =>
-    requests.set(`/searchmain?page=1&size=20&category=${id}&vendor=`),
+  byCategory: (size, id) =>
+    requests.set(`/searchmain?page=1&size=${size}&category=${id}&vendor=`),
   onLoadMore: (size, page) =>
     requests.set(`/searchmain?page=${page}&size=${size}&category=&vendor=`),
   onLoadMoreByCategory: (size, page, id) =>

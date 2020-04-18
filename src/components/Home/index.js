@@ -82,12 +82,12 @@ class Home extends React.Component {
         */
         if (window.category === undefined) {
           if (this.props.searchKeyword === undefined) {
-            this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
+            this.props.onLoadMore(agent.Articles.onLoadMore(10, window.number))
           } else {
-            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, window.number, this.props.searchKeyword), this.props.searchKeyword)
+            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(10, window.number, this.props.searchKeyword), this.props.searchKeyword)
           }
         } else {
-          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, window.number, window.category))
+          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(10, window.number, window.category))
         }
       }
     };
@@ -120,7 +120,7 @@ class Home extends React.Component {
   render() {
     const clickHandler = ev => {
       ev.preventDefault();
-      this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
+      this.props.onLoadMore(agent.Articles.onLoadMore(10, window.number))
     };
     if (!this.props.articleList.articles) {
       return (

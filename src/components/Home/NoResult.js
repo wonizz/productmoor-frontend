@@ -15,7 +15,7 @@ const NoResult = ({pageName, category, onDetailUnLoad, onClickCategory, articleL
                   category.category.map((category, index) => {
                     const handleClick = ev => {
                       ev.preventDefault();
-                      onClickCategory('', '', agent.Articles.byCategory(category));
+                      onClickCategory('', '', agent.Articles.byCategory(20, category));
                       onDetailUnLoad();
                       window.category = category;
                       window.number = 1;
