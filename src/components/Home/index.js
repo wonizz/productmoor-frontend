@@ -71,8 +71,9 @@ class Home extends React.Component {
         (document.documentElement && document.documentElement.scrollTop) ||
         document.body.scrollTop;
       // 스크롤링 했을때, 브라우저의 가장 밑에서 100정도 높이가 남았을때에 실행하기위함.
-      if (scrollHeight - innerHeight - scrollTop < 100) {
+      if (scrollHeight - innerHeight - scrollTop < 100 && window.onloadLock) {
         window.clickBlock = true;
+        window.onloadLock = false;
         window.number += 1;
         //window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
         /*1. category 정보가 없는 경우
