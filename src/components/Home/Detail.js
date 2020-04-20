@@ -27,7 +27,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                         <div className="overview-image">
                             <button type="button" className="ov-nav prev"></button>
                             <a href="/#" className="ov-link-img">
-                                <img src={`${detail.image}`} alt={`${detail.product_title}`} />
+                                <img src={`${detail.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=500&q=80")}`} alt={`${detail.product_title}`} />
                             </a>
                             <button type="button" className="ov-nav next"></button>
                         </div>
@@ -153,7 +153,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                     };
                                     return (
                                         <a href="/#" className="img-cell" onClick={handleClick} key={index}>
-                                            <img src={related_detail_info.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=180&f=webp&q=90")} alt="" />
+                                            <img src={related_detail_info.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=300&q=80")} alt="" />
                                         </a>
                                     )
                                 })
