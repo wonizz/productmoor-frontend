@@ -18,13 +18,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
+
 const MainView = props => {
   if (!props.articles) {
     return (
       <div className="cont-list">Loading...</div>
     );
   }
-  
+  const handleImagesLoaded = () => {
+    window.onloadLock = true;
+  }
   if(props.articles.length !== 0){
   return (
     // <InfiniteScroll
@@ -38,7 +41,8 @@ const MainView = props => {
       className={'cont-list'} // default ''
       elementType={'div'} // default 'div'
       disableImagesLoaded={false} // default false
-      updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+      updateOnEachImageLoad={true} // default false and works only if disableImagesLoaded is false
+      onLayoutComplete={handleImagesLoaded}
     >
       {
         props.articles.map((article, index) => {
@@ -51,7 +55,7 @@ const MainView = props => {
           return (
             <Link to={''} className="img-cell" onClick={handleClick} key={index}>
               <figure>
-                <img src={article._source.image} alt="" />
+                <img src={article._source.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=300&q=80")} alt="" />
                 <figcaption></figcaption>
               </figure>
             </Link>

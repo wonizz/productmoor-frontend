@@ -71,8 +71,9 @@ class Home extends React.Component {
         (document.documentElement && document.documentElement.scrollTop) ||
         document.body.scrollTop;
       // 스크롤링 했을때, 브라우저의 가장 밑에서 100정도 높이가 남았을때에 실행하기위함.
-      if (scrollHeight - innerHeight - scrollTop < 100) {
+      if (scrollHeight - innerHeight - scrollTop < 100 && window.onloadLock) {
         window.clickBlock = true;
+        window.onloadLock = false;
         window.number += 1;
         //window.category == undefined ? this.props.onLoadMore(agent.Articles.onLoadMore(30, (window.number-1)*30)) : this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, (window.number-1)*30, window.category))
         /*1. category 정보가 없는 경우
@@ -81,12 +82,12 @@ class Home extends React.Component {
         */
         if (window.category === undefined) {
           if (this.props.searchKeyword === undefined) {
-            this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
+            this.props.onLoadMore(agent.Articles.onLoadMore(20, window.number))
           } else {
-            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(30, window.number, this.props.searchKeyword), this.props.searchKeyword)
+            this.props.onLoadMore(agent.Articles.onLoadbySearchKeword(20, window.number, this.props.searchKeyword), this.props.searchKeyword)
           }
         } else {
-          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(30, window.number, window.category))
+          this.props.onLoadMore(agent.Articles.onLoadMoreByCategory(20, window.number, window.category))
         }
       }
     };
@@ -119,7 +120,7 @@ class Home extends React.Component {
   render() {
     const clickHandler = ev => {
       ev.preventDefault();
-      this.props.onLoadMore(agent.Articles.onLoadMore(30, window.number))
+      this.props.onLoadMore(agent.Articles.onLoadMore(20, window.number))
     };
     if (!this.props.articleList.articles) {
       return (
