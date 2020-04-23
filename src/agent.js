@@ -5,7 +5,7 @@ const superagent = superagentPromise(_superagent, Promise);
 
 const API_ROOT = 'https://bfb63248va.execute-api.ap-northeast-2.amazonaws.com';
 
-const encode = encodeURIComponent;
+// const encode = encodeURIComponent;
 const responseBody = res => res.body;
 
 let token = null;
@@ -43,13 +43,11 @@ const Tags = {
   getAll: () => requests.get('/tags')
 };
 
-const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
+//const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 //const omitSlug = article => Object.assign({}, article, { slug: undefined })
 const Articles = {
   all: page =>
-    requests.set(`/searchmain?page=1&size=20&category=&vendor=`),
-  byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
+    requests.set(`/searchmain?page=1&size=30&category=&vendor=`),
   byTitle: (id, vendor) =>
     requests.set(`/searchdetail?product_title=${id}&vendor=${vendor}`),
   byTitleOnline: (id, vendor) =>
