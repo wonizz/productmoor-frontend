@@ -31,6 +31,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_IAM_MANAGER_SECRET_ACCESS_KEY }}'
         run: |
           aws s3 cp \
+            --acl public-read \
             --recursive \
             --region ap-northeast-2 \
             build s3://productmoor 
