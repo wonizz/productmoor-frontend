@@ -5,7 +5,7 @@ import Masonry from 'react-masonry-component';
 const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore }) => {
     if (detail) {
         let logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_brand_" + detail.vendor + ".png";
-        window.category = detail.category;
+        window.category = undefined;
         window.clickBlock = false;
         const clickHandler = ev => {
             //ev.preventDefault();
