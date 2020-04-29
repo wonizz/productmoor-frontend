@@ -54,8 +54,8 @@ const MainView = props => {
           };
           return (
             <Link to={''} className="img-cell" onClick={handleClick} key={index}>
-              <figure>
-                <img src={article._source.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=300&q=80")} alt="" />
+              <figure>                
+                <img src={"http://d3bcbvlydrh318.cloudfront.net/image/brandshop/" + article._source.image + "?w=300&q=80"} alt="" />
                 <figcaption></figcaption>
               </figure>
             </Link>
