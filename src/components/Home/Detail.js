@@ -27,7 +27,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                         <div className="overview-image">
                             <button type="button" className="ov-nav prev"></button>
                             <a href="/#" className="ov-link-img">
-                                <img src={`${detail.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=500&q=80")}`} alt={`${detail.product_title}`} />
+                                <img src={`${"http://d3bcbvlydrh318.cloudfront.net/image/brandshop/" + detail.image + "?w=500&q=80"}`} alt={`${detail.product_title}`} />
                             </a>
                             <button type="button" className="ov-nav next"></button>
                         </div>
@@ -80,7 +80,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                                     ? (
                                                         <li>
                                                             <strong>Dimension</strong>
-                                                            <img src={`${detail.dimensions}`} alt={`${detail.product_title}`} />
+                                                            <img src={`${"http://d3bcbvlydrh318.cloudfront.net/image/brandshop/" + detail.dimensions}`} alt={`${detail.product_title}`} />
                                                         </li>
                                                     )
                                                     : ('')
@@ -107,7 +107,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                                     return (
                                                         <figure className="swiper-slide slide-detail" key={index}>
                                                             <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
-                                                                <img src={online_detail_info.image} alt={`${online_detail_info.title}`} />
+                                                                <img src={"http://d3bcbvlydrh318.cloudfront.net/image/onlineshop/" + online_detail_info.image} alt={`${online_detail_info.title}`} />
                                                             </a>
                                                             <figcaption>
                                                                 <dl className="info-deal">
@@ -153,7 +153,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                     };
                                     return (
                                         <a href="/#" className="img-cell" onClick={handleClick} key={index}>
-                                            <img src={related_detail_info.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=300&q=80")} alt="" />
+                                            <img src={"http://d3bcbvlydrh318.cloudfront.net/image/brandshop/" + related_detail_info.image + "?w=300&q=80"} alt="" />
                                         </a>
                                     )
                                 })
