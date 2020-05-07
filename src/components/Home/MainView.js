@@ -3,7 +3,7 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 import { CHANGE_TAB } from '../../constants/actionTypes';
 import Masonry from 'react-masonry-component';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 const mapStateToProps = state => ({
@@ -55,7 +55,7 @@ const MainView = props => {
           return (
             <Link to={''} className="img-cell" onClick={handleClick} key={index}>
               <figure>                
-                <img src={"http://d3bcbvlydrh318.cloudfront.net/image/brandshop/" + article._source.image + "?w=300&q=80"} alt="" />
+              <img src={"https://www.productmoor.com/image/brandshop/" + article._source.image + "?w=300&q=80"} alt="" />
                 <figcaption></figcaption>
               </figure>
             </Link>

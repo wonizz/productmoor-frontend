@@ -1,6 +1,7 @@
 import React from 'react';
 import agent from '../../agent';
 import Masonry from 'react-masonry-component';
+import { Link } from 'react-router-dom';
 
 const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickDetail, onRelatedLoadMore }) => {
     if (detail) {
@@ -26,16 +27,16 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                     <div className="detail-overview">
                         <div className="overview-image">
                             <button type="button" className="ov-nav prev"></button>
-                            <a href="/#" className="ov-link-img">
-                                <img src={`${detail.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=500&q=80")}`} alt={`${detail.product_title}`} />
-                            </a>
+                            <Link to="/#" className="ov-link-img">
+                                <img src={`${"https://www.productmoor.com/image/brandshop/" + detail.image + "?w=500&q=80"}`} alt={`${detail.product_title}`} />
+                            </Link>
                             <button type="button" className="ov-nav next"></button>
                         </div>
                         <div className="overview-info">
                             <div className="ov-info-head">
-                                <a href={`${detail.url}`} className="ov-link" target="_blank" rel="noopener noreferrer">
+                                <Link to={`${detail.url}`} className="ov-link" target="_blank" rel="noopener noreferrer">
                                     <span>{detail.url}</span>
-                                </a>
+                                </Link>
                                 <button type="button" className="btn-ov like"></button>
                                 <button type="button" className="btn-ov share"></button>
                             </div>
@@ -80,7 +81,7 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                                     ? (
                                                         <li>
                                                             <strong>Dimension</strong>
-                                                            <img src={`${detail.dimensions}`} alt={`${detail.product_title}`} />
+                                                            <img src={`${"https://www.productmoor.com/image/brandshop/" + detail.dimensions}`} alt={`${detail.product_title}`} />
                                                         </li>
                                                     )
                                                     : ('')
@@ -106,9 +107,9 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                                     let shop_logo = "https://productmoor.s3.ap-northeast-2.amazonaws.com/image/logo/logo_shop_" + online_detail_info.shop + ".png"
                                                     return (
                                                         <figure className="swiper-slide slide-detail" key={index}>
-                                                            <a href={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
-                                                                <img src={online_detail_info.image} alt={`${online_detail_info.title}`} />
-                                                            </a>
+                                                            <Link to={`/forwarding.html?redirect=${online_detail_info.url}`} target="_blank" rel="noopener noreferrer">
+                                                            <img src={"https://www.productmoor.com/image/onlineshop/" + online_detail_info.image} alt={`${online_detail_info.title}`} />
+                                                            </Link>
                                                             <figcaption>
                                                                 <dl className="info-deal">
                                                                     <dt>
@@ -152,9 +153,9 @@ const Detail = ({ relatedFrom, detail, online, related, onDetailUnLoad, onClickD
                                         window.clickBlock = false;
                                     };
                                     return (
-                                        <a href="/#" className="img-cell" onClick={handleClick} key={index}>
-                                            <img src={related_detail_info.image.replace("https://productmoor.s3.ap-northeast-2.amazonaws.com", "http://d3bcbvlydrh318.cloudfront.net").concat("?w=300&q=80")} alt="" />
-                                        </a>
+                                        <Link to="/#" className="img-cell" onClick={handleClick} key={index}>
+                                        <img src={"https://www.productmoor.com/image/brandshop/" + related_detail_info.image + "?w=300&q=80"} alt="" />
+                                        </Link>
                                     )
                                 })
                             }

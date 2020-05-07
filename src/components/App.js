@@ -4,6 +4,15 @@ import Footer from './Footer';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import Article from '../components/Article';
+import Editor from '../components/Editor';
+import Home from '../components/Home';
+import Login from '../components/Login';
+import Profile from '../components/Profile';
+import ProfileFavorites from '../components/ProfileFavorites';
+import Register from '../components/Register';
+import Settings from '../components/Settings';
 import { APP_LOAD, REDIRECT, HOME_PAGE_LOADED, ARTICLE_PAGE_UNLOADED } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({
@@ -65,7 +74,17 @@ class App extends React.Component {
               onSearchLoad={this.props.onSearchLoad}
               onDetailUnLoad={this.props.onDetailUnLoad}
             />
-            {this.props.children}
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/editor/:slug" component={Editor} />
+              <Route path="/editor" component={Editor} />
+              <Route path="/article/:id" component={Article} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/@:username/favorites" component={ProfileFavorites} />
+              <Route path="/@:username" component={Profile} />
+            </Switch>
             <Footer
               onPrivacyTermsLoad={this.props.onPrivacyTermsLoad}
             />
