@@ -1323,7 +1323,7 @@ ol {
         width: 13.04vw;
     }
     .cell-util {
-        margin: 0 0 0 3.623vw;
+        margin: 0 0 0 2.923vw;
     }
     .cell-util .btn-util {
         width: 3.331vw;
@@ -1377,7 +1377,7 @@ ol {
         width: 18.116vw;
         height: 6.28vw;
         border-radius: 6.28vw;
-        font-size: 3.623vw;
+        font-size: 2.923vw;
     }
     .menu-swiper .slick-list {
         padding: 0;
@@ -1400,7 +1400,7 @@ ol {
         margin: 0;
     }
     .stit-cont {
-        margin: 3.623vw 0 2.63vw;
+        margin: 2.923vw 0 2.63vw;
         font-size: 2rem;
     }
     .img-cell {
@@ -1441,8 +1441,8 @@ ol {
         height: 7.729vw;
     }
     .addon .btn-del {
-        width: 3.623vw;
-        height: 3.623vw;
+        width: 2.923vw;
+        height: 2.923vw;
     }
     .addon .btn-del:after {
         width: 1.449vw;
@@ -1527,8 +1527,8 @@ ol {
         width: 75.894vw;
     }
     .overview-image .ov-nav {
-        width: 3.623vw;
-        height: 3.623vw;
+        width: 2.923vw;
+        height: 2.923vw;
     }
     .overview-image .ov-nav.prev {
         left: 4.831vw;
@@ -1652,8 +1652,8 @@ ol {
     }
     .detail-dealer .slick-prev:after,
     .detail-dealer .slick-next:after {
-        width: 3.623vw;
-        height: 3.623vw;
+        width: 2.923vw;
+        height: 2.923vw;
     }
     .detail-dealer .slick-prev {
         left: -2.415vw;
